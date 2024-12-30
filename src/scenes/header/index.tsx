@@ -3,14 +3,14 @@ import Lambo from "../../assets/Lamborghini.png";
 import Message from "../../assets/Message.png";
 import Search from "../../assets/Search.png";
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   function handleOpen() {
     setIsOpen(!isOpen);
   }
   return (
     <header>
-      <div className="bg-black flex justify-between px-4 p-2 sticky top-0 left-0 right-0">
+      <div className="bg-black flex justify-between px-4 p-2 fixed top-0 left-0 right-0 z-20">
         <img src={Lambo} alt="Lamborghini Icon" className="w-11 h-11" />
         <nav className="">
           <ul className="text-white  hidden lg:flex">
@@ -31,28 +31,26 @@ export default function Header() {
 
           {/* {!isOpen ? ( */}
           <button
-            className="w-8 h-5 relative flex justify-center items-center overflow-hidden"
+            className={`w-8 h-7   flex justify-center items-center border  ${
+              isOpen ? "" : ""
+            }`}
             onClick={handleOpen}
           >
-            <div
-              className={` ${
-                !isOpen ? "flex flex-col  gap-1.5  justify-center p-0.5" : ""
-              }`}
-            >
+            <div className="w-6 h-5  flex flex-col justify-between items-center   relative">
               <div
                 className={`${
-                  isOpen && " rotate-45 "
-                } bg-white w-8 h-[0.05rem] absolute top-0  transition-all duration-700 origin-left`}
+                  isOpen && " rotate-45 absolute top-0 bottom-0 my-auto"
+                } bg-white w-full h-[0.05rem]    transition-all duration-700 `}
               ></div>
               <div
                 className={`${
                   isOpen && "opacity-0"
-                } bg-white w-8 h-[0.05rem] transition-all duration-700`}
+                } bg-white w-full h-[0.05rem] transition-all duration-700`}
               ></div>
               <div
                 className={`${
-                  isOpen && "  -rotate-45 "
-                } bg-white w-8 h-[0.05rem] absolute  bottom-0 transition-all duration-700 origin-left`}
+                  isOpen && "  -rotate-45 absolute top-0 bottom-0 my-auto"
+                } bg-white w-full h-[0.05rem]  transition-all duration-700 `}
               ></div>
             </div>
           </button>
@@ -67,12 +65,12 @@ export default function Header() {
           )} */}
         </div>
       </div>
-      <nav>
-        <ul
-          className={`bg-black text-white px-6 text-2xl font-semibold  flex flex-col gap-4 transition-all ease-in-out duration-700 overflow-hidden  z-30 ${
-            isOpen ? "h-screen pt-14" : "h-0"
-          } `}
-        >
+      <nav
+        className={`bg-black text-white px-6 text-2xl font-semibold fixed h-full flex flex-col transition-all ease-in duration-500 right-0 left-0 ${
+          isOpen ? "top-0   pt-14" : "-top-[100%]"
+        }`}
+      >
+        <ul className={` flex flex-col pt-14 gap-4 overflow-auto `}>
           <li>MODELS</li>
           <li>BEYOND</li>
           <li>WONERSHIP</li>
@@ -88,6 +86,14 @@ export default function Header() {
           <li>INNOVATION & EXCELLENCE</li>
           <li>SUSTAINABILITY</li>
         </ul>
+        <div className="flex bg-blue-500 justify-between">
+          <div className="h-16 bg-yellow-600 w-full flex justify-center items-center">
+            ENGLISH
+          </div>
+          <div className="bg-gray-500 w-full flex justify-center items-center">
+            SOCIAL
+          </div>
+        </div>
       </nav>
     </header>
   );
