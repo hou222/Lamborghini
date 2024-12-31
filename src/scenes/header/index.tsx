@@ -5,7 +5,6 @@ import Search from "../../assets/Search.png";
 import Hexa from "../../assets/hexagon.png";
 import UpWhite from "../../assets/UpWhite.png";
 import UpBlack from "../../assets/UpBlack.png";
-import { img } from "motion/react-client";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
   const [isOpen1, setIsOpen1] = useState(false);
@@ -127,7 +126,22 @@ export default function Header() {
             </div>
             ENGLISH
           </button>
-
+          <ul
+            className={`absolute transition-all ease-in duration-500 bg-white text-black left-0 z-10 w-1/2 ${
+              isOpen1 ? "bottom-16" : "-bottom-[100%] "
+            }`}
+          >
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+          </ul>
           <button
             className={`${
               isOpen2 ? "bg-white text-black" : " border border-[#ffffff40] "
