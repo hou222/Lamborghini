@@ -2,15 +2,27 @@ import { useState } from "react";
 import Lambo from "../../assets/Lamborghini.png";
 import Message from "../../assets/Message.png";
 import Search from "../../assets/Search.png";
+import Hexa from "../../assets/hexagon.png";
+import UpWhite from "../../assets/UpWhite.png";
+import UpBlack from "../../assets/UpBlack.png";
+import { img } from "motion/react-client";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
+  const [isOpen1, setIsOpen1] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   function handleOpen() {
     setIsOpen(!isOpen);
   }
+  function handleOpen1() {
+    setIsOpen1(!isOpen1);
+  }
+  function handleOpen2() {
+    setIsOpen2(!isOpen2);
+  }
   return (
     <header>
-      <div className="bg-black flex justify-between px-4 p-2 fixed top-0 left-0 right-0 z-20">
+      <div className="bg-black  flex justify-between px-4 p-2 fixed top-0 left-0 right-0 z-20">
         <img src={Lambo} alt="Lamborghini Icon" className="w-11 h-11" />
         <nav className="">
           <ul className="text-white  hidden lg:flex">
@@ -66,11 +78,13 @@ export default function Header() {
         </div>
       </div>
       <nav
-        className={`bg-black text-white px-6 text-2xl font-semibold fixed h-full flex flex-col transition-all ease-in duration-500 right-0 left-0 ${
+        className={`bg-black text-white  fixed h-full flex flex-col transition-all ease-in duration-500 right-0 left-0 ${
           isOpen ? "top-0   pt-14" : "-top-[100%]"
         }`}
       >
-        <ul className={` flex flex-col pt-14 gap-4 overflow-auto `}>
+        <ul
+          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold`}
+        >
           <li>MODELS</li>
           <li>BEYOND</li>
           <li>WONERSHIP</li>
@@ -86,13 +100,55 @@ export default function Header() {
           <li>INNOVATION & EXCELLENCE</li>
           <li>SUSTAINABILITY</li>
         </ul>
-        <div className="flex bg-blue-500 justify-between">
-          <div className="h-16 bg-yellow-600 w-full flex justify-center items-center">
+        <div
+          className="flex justify-between text-xl
+        "
+        >
+          <button
+            className={`${
+              isOpen1
+                ? "bg-white text-black "
+                : " border border-[#ffffff40] delay-500"
+            } w-1/2 flex h-16 justify-start z-40 items-center gap-2 px-6`}
+            onClick={handleOpen1}
+          >
+            <div
+              className="w-[29px] h-[29px]  flex justify-center items-center relative 
+            "
+            >
+              {isOpen1 ? (
+                <img src={UpBlack} alt="arrow up" className="w-2 h-2" />
+              ) : (
+                <>
+                  <img src={Hexa} alt="hexagonal shape" className="absolute" />
+                  <img src={UpWhite} alt="arrow up" className="w-2 h-2" />
+                </>
+              )}
+            </div>
             ENGLISH
-          </div>
-          <div className="bg-gray-500 w-full flex justify-center items-center">
+          </button>
+
+          <button
+            className={`${
+              isOpen2 ? "bg-white text-black" : " border border-[#ffffff40] "
+            } w-1/2 flex h-16 justify-start items-center gap-2 px-6`}
+            onClick={handleOpen2}
+          >
+            <div
+              className="w-[29px] h-[29px]  flex justify-center items-center relative
+            "
+            >
+              {isOpen2 ? (
+                <img src={UpBlack} alt="arrow up" className="w-2 h-2" />
+              ) : (
+                <>
+                  <img src={Hexa} alt="hexagonal shape" className="absolute" />
+                  <img src={UpWhite} alt="arrow up" className="w-2 h-2" />
+                </>
+              )}
+            </div>
             SOCIAL
-          </div>
+          </button>
         </div>
       </nav>
     </header>
