@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lambo from "../../assets/Lamborghini.png";
 import Message from "../../assets/Message.png";
 import Search from "../../assets/Search.png";
@@ -6,9 +6,16 @@ import Hexa from "../../assets/hexagon.png";
 import UpWhite from "../../assets/UpWhite.png";
 import UpBlack from "../../assets/UpBlack.png";
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [height, setHeight] = useState(0);
+  const ref = useRef();
+
+  /* useEffect(() => {
+    setHeight(ref.current.clientHeight);
+  }, [setHeight]);
+  console.log(height); */
 
   function handleOpen() {
     setIsOpen(!isOpen);
@@ -77,7 +84,7 @@ export default function Header() {
         </div>
       </div>
       <nav
-        className={`bg-black text-white  fixed h-full flex flex-col transition-all ease-in duration-500 right-0 left-0 ${
+        className={`bg-black text-white  fixed h-screen flex flex-col overflow-clip transition-all ease-in duration-500 right-0 left-0 ${
           isOpen ? "top-0   pt-14" : "-top-[100%]"
         }`}
       >
@@ -100,15 +107,15 @@ export default function Header() {
           <li>SUSTAINABILITY</li>
         </ul>
         <div
-          className="flex justify-between text-xl
-        "
+          className={`flex justify-between text-xl relative bg-green-500 delay-500 
+        `}
         >
           <button
             className={`${
               isOpen1
                 ? "bg-white text-black "
-                : " border border-[#ffffff40] delay-500"
-            } w-1/2 flex h-16 justify-start z-40 items-center gap-2 px-6`}
+                : " border border-[#ffffff40] bg-black delay-500"
+            } w-1/2 flex h-16 justify-start z-40 items-center gap-2 px-6 `}
             onClick={handleOpen1}
           >
             <div
@@ -127,10 +134,11 @@ export default function Header() {
             ENGLISH
           </button>
           <ul
-            className={`absolute transition-all ease-in duration-500 bg-white text-black left-0 z-10 w-1/2 ${
-              isOpen1 ? "bottom-16" : "-bottom-[100%] "
-            }`}
+            className={`absolute transition-all ease-in duration-500 flex flex-col justify-between py-3 items-center bg-gray-300 text-black left-0 h-[400px] w-1/2 ${
+              isOpen1 ? "-top-[400px]" : "top-0"
+            } ${!isOpen && " "}`}
           >
+            <li>sffdfjijijijji</li>
             <li>sffdf</li>
             <li>sffdf</li>
             <li>sffdf</li>
@@ -139,12 +147,52 @@ export default function Header() {
             <li>sffdf</li>
             <li>sffdf</li>
             <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
+            <li>sffdfjijijijiij</li>
           </ul>
+
+          {/* <div className="flex justify-between text-xl  bg-red-500 relative">
           <button
             className={`${
-              isOpen2 ? "bg-white text-black" : " border border-[#ffffff40] "
+              isOpen1
+                ? "bg-white text-black"
+                : "border border-[#ffffff40] bg-black delay-500"
+            } w-1/2 flex h-16 justify-start z-40 items-center gap-2 px-6`}
+            onClick={handleOpen1}
+          >
+            <div className="w-[29px] h-[29px] flex justify-center items-center relative">
+              {isOpen1 ? (
+                <img src={UpBlack} alt="arrow up" className="w-2 h-2" />
+              ) : (
+                <>
+                  <img src={Hexa} alt="hexagonal shape" className="absolute" />
+                  <img src={UpWhite} alt="arrow up" className="w-2 h-2" />
+                </>
+              )}
+            </div>
+            ENGLISH
+          </button>
+          <ul
+            className={`absolute transition-all ease-in duration-500 bg-gray-300 -top-[340%] text-black left-0 w-1/2 ${
+              isOpen1 ? "-top-[350%]" : "top-0"
+            } ${!isOpen && " "}`}
+          >
+            <li>sffdfjijijijji</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdf</li>
+            <li>sffdfjijijijiij</li>
+          </ul> */}
+
+          <button
+            className={`${
+              isOpen2
+                ? "bg-white text-black"
+                : " border border-[#ffffff40] bg-black"
             } w-1/2 flex h-16 justify-start items-center gap-2 px-6`}
             onClick={handleOpen2}
           >
