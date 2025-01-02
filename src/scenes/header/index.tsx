@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Lambo from "../../assets/Lamborghini.png";
 import Message from "../../assets/Message.png";
 import Search from "../../assets/Search.png";
@@ -6,16 +6,9 @@ import Hexa from "../../assets/hexagon.png";
 import UpWhite from "../../assets/UpWhite.png";
 import UpBlack from "../../assets/UpBlack.png";
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpen1, setIsOpen1] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen1, setIsOpen1] = useState(true);
   const [isOpen2, setIsOpen2] = useState(false);
-  const [height, setHeight] = useState(0);
-  const ref = useRef();
-
-  /* useEffect(() => {
-    setHeight(ref.current.clientHeight);
-  }, [setHeight]);
-  console.log(height); */
 
   function handleOpen() {
     setIsOpen(!isOpen);
@@ -84,7 +77,7 @@ export default function Header() {
         </div>
       </div>
       <nav
-        className={`bg-black text-white  fixed h-screen flex flex-col overflow-clip transition-all ease-in duration-500 right-0 left-0 ${
+        className={`bg-black text-white  fixed h-screen flex flex-col  overflow-clip transition-all ease-in duration-500 right-0 left-0 ${
           isOpen ? "top-0   pt-14" : "-top-[100%]"
         }`}
       >
@@ -134,20 +127,17 @@ export default function Header() {
             ENGLISH
           </button>
           <ul
-            className={`absolute transition-all ease-in duration-500 flex flex-col justify-between py-3 items-center bg-gray-300 text-black left-0 h-[400px] w-1/2 ${
-              isOpen1 ? "-top-[400px]" : "top-0"
+            className={`absolute transition-all ease-in duration-500 flex flex-col justify-between px-6 py-8 items-start bg-white text-black text-base left-0 h-[330px] w-1/2 ${
+              isOpen1 ? "-top-[330px] border-b" : "top-0"
             } ${!isOpen && " "}`}
           >
-            <li>sffdfjijijijji</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdf</li>
-            <li>sffdfjijijijiij</li>
+            <li>ITALIAN</li>
+            <li>FRENCH</li>
+            <li>SPANISH</li>
+            <li>GERMAN</li>
+            <li>CHINESE</li>
+            <li>JAPANESE</li>
+            <li>RUSSIAN</li>
           </ul>
 
           {/* <div className="flex justify-between text-xl  bg-red-500 relative">
