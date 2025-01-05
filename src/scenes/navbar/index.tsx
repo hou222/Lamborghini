@@ -21,6 +21,7 @@ type Props = {
 export default function Navbar({ isOpen }: Props) {
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [turnRight, setTurnRight] = useState(false);
 
   function handleOpen1() {
     if (isOpen2) {
@@ -35,6 +36,10 @@ export default function Navbar({ isOpen }: Props) {
     }
 
     setIsOpen2((isOpen2) => !isOpen2);
+  }
+
+  function handleSlide() {
+    setTurnRight((turnRight) => !turnRight);
   }
 
   return (
@@ -53,17 +58,18 @@ export default function Navbar({ isOpen }: Props) {
         </ul>
       </div>
       <div
-        className={`bg-red-400 text-white  fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-in duration-500 right-0  left-0 lg:hidden ${
+        className={` text-white  fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-in duration-500 right-0  left-0 lg:hidden ${
           isOpen ? "top-0   pt-14" : "-top-[100%]"
-        }`}
+        } ${turnRight ? "bg-red-600" : "bg-green-400"}`}
       >
         <ul
-          className={`bg-green-500 flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold`}
+          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold`}
         >
           <li>
-            MODELS {">"}
-            <ul>
-              <li>lam</li>
+            <button onClick={() => handleSlide} className="bg-green-400">
+              MODELS {">"}
+            </button>
+            <ul className={`hidden ${turnRight ? "" : ""}`}>
               <li>lam</li>
               <li>lam</li>
               <li>lam</li>
@@ -72,7 +78,7 @@ export default function Navbar({ isOpen }: Props) {
               <li>lam</li>
             </ul>
           </li>
-          {/* <li>BEYOND</li>
+          <li>BEYOND</li>
           <li>WONERSHIP{">"}</li>
           <li>MOTOSPORT{">"}</li>
           <li>DEALERSHIPS</li>
@@ -84,10 +90,10 @@ export default function Navbar({ isOpen }: Props) {
           <li>WARRANTY EXTENSION</li>
           <li>DESIGN</li>
           <li>INNOVATION & EXCELLENCE</li>
-          <li>SUSTAINABILITY</li> */}
+          <li>SUSTAINABILITY</li>
         </ul>
         <div
-          className={`flex justify-between text-xl relative  bg-green-500 delay-500 
+          className={`flex justify-between text-xl relative bg-green-500 delay-500 
         `}
         >
           <button
@@ -113,7 +119,7 @@ export default function Navbar({ isOpen }: Props) {
             </div>
             ENGLISH
           </button>
-          {/* <ul
+          <ul
             className={`absolute transition-all ease-in duration-300 flex flex-col justify-center px-6 gap-4  items-start bg-white text-black text-base left-0 h-[330px] w-1/2 ${
               isOpen1 ? "-top-[330px] border-b" : "top-0"
             } ${!isOpen && " "}`}
@@ -125,7 +131,7 @@ export default function Navbar({ isOpen }: Props) {
             <li>CHINESE</li>
             <li>JAPANESE</li>
             <li>RUSSIAN</li>
-          </ul> */}
+          </ul>
 
           <button
             className={`${
@@ -150,7 +156,7 @@ export default function Navbar({ isOpen }: Props) {
             </div>
             SOCIAL
           </button>
-          {/* <ul
+          <ul
             className={`absolute transition-all ease-in duration-300 flex flex-col justify-center px-6 gap-4 items-start bg-white text-black text-base right-0 h-[480px] w-1/2 ${
               isOpen2 ? "-top-[480px] border-b" : "top-0"
             } ${!isOpen && " "}`}
@@ -199,7 +205,7 @@ export default function Navbar({ isOpen }: Props) {
               <img src={Discord} alt="" className="w-[18px] h-[18px] " />
               <p className=" text-end">DISCORD</p>
             </li>
-          </ul> */}
+          </ul>
         </div>
       </div>
     </nav>
