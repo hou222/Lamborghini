@@ -14,18 +14,25 @@ import Wechat from "../../assets/wechat.png";
 import Discord from "../../assets/discord.png";
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { motion } from "motion/react";
+import { motion, Variant } from "motion/react";
 
 type Props = {
   isOpen?: boolean;
 };
 
 export default function Navbar({ isOpen }: Props) {
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
-  const [turnRight, setTurnRight] = useState(false);
+  const [isOpen1, setIsOpen1] = useState<boolean>(false);
+  const [isOpen2, setIsOpen2] = useState<boolean>(false);
+  const [turnRight, setTurnRight] = useState<boolean>(false);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
+  const variants: Variant = {
+    "in-view": { x: "0px", transition: { type: "tween", ease: "easeOut" } },
+    "out-of-view": (index: number) => ({
+      x: index > 0 ? "100%" : "-100%",
+      transition: { type: "tween", ease: "easeOut" },
+    }),
+  };
   const navigationData = [
     {
       id: 1,
@@ -52,6 +59,16 @@ export default function Navbar({ isOpen }: Props) {
     {
       id: 4,
       label: "BEYOND",
+      links: [
+        {
+          id: 11,
+          label: "TEMERARIO",
+        },
+        {
+          id: 12,
+          label: "REVUELTO",
+        },
+      ],
     },
   ];
 
@@ -79,8 +96,14 @@ export default function Navbar({ isOpen }: Props) {
     setIsOpen2((isOpen2) => !isOpen2);
   }
 
-  function handleSlide() {
+  /* function handleSlide() {
     setTurnRight((turnRight) => !turnRight);
+  } */
+
+  function getNavItem(selectedItem: string[]) {
+    const result = [];
+    const links = [...navigationData];
+    const itr = 0;
   }
 
   //--------------------------------------------//
@@ -121,13 +144,19 @@ export default function Navbar({ isOpen }: Props) {
         } `}
       >
         <motion.ul
+          variants={variants}
+          initial="in-view"
+          animate={selectedItems.length > 0 ? "out-of-view" : "in-view"}
+          custom={selectedItems.length > 0 ? -1 : 0}
           className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold transition-all ease-in duration-500 `}
         >
           {navigationData?.map((item: any) => {
             return (
               <li key={item.id}>
                 <button
-                  onClick={() => {}}
+                  onClick={() => {
+                    goToNextLevel(item);
+                  }}
                   className="w-full flex justify-between items-center"
                 >
                   <span>{item.label}</span>
