@@ -13,6 +13,8 @@ import Youku from "../../assets/youku.png";
 import Wechat from "../../assets/wechat.png";
 import Discord from "../../assets/discord.png";
 import { useState } from "react";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { motion } from "motion/react";
 
 type Props = {
   isOpen?: boolean;
@@ -22,7 +24,46 @@ export default function Navbar({ isOpen }: Props) {
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [turnRight, setTurnRight] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
+  const navigationData = [
+    {
+      id: 1,
+      label: "MODELS",
+      links: [
+        {
+          id: 11,
+          label: "TEMERARIO",
+        },
+        {
+          id: 12,
+          label: "REVUELTO",
+        },
+      ],
+    },
+    {
+      id: 2,
+      label: "BEYOND",
+    },
+    {
+      id: 3,
+      label: "BEYOND",
+    },
+    {
+      id: 4,
+      label: "BEYOND",
+    },
+  ];
+
+  function goToNextLevel(item: any) {
+    if (!item.links) {
+      return;
+    }
+
+    setSelectedItems([...selectedItems, item.id]);
+  }
+
+  console.log(turnRight);
   function handleOpen1() {
     if (isOpen2) {
       setIsOpen2((isOpen2) => !isOpen2);
@@ -42,6 +83,23 @@ export default function Navbar({ isOpen }: Props) {
     setTurnRight((turnRight) => !turnRight);
   }
 
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+  //--------------------------------------------//
+
   return (
     <nav className="">
       <div>
@@ -58,18 +116,35 @@ export default function Navbar({ isOpen }: Props) {
         </ul>
       </div>
       <div
-        className={` text-white  fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-in duration-500 right-0  left-0 lg:hidden ${
+        className={` text-white bg-black fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-in duration-500 right-0  left-0 lg:hidden ${
           isOpen ? "top-0   pt-14" : "-top-[100%]"
-        } ${turnRight ? "bg-red-600" : "bg-green-400"}`}
+        } `}
       >
-        <ul
-          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold`}
+        <motion.ul
+          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold transition-all ease-in duration-500 `}
         >
-          <li>
-            <button onClick={() => handleSlide} className="bg-green-400">
-              MODELS {">"}
-            </button>
-            <ul className={`hidden ${turnRight ? "" : ""}`}>
+          {navigationData?.map((item: any) => {
+            return (
+              <li key={item.id}>
+                <button
+                  onClick={() => {}}
+                  className="w-full flex justify-between items-center"
+                >
+                  <span>{item.label}</span>
+                  {item.links && <MdKeyboardArrowRight />}
+                </button>
+              </li>
+            );
+          })}
+          {/* <li>
+            <div
+              onClick={handleSlide}
+              className={`  w-full flex justify-between items-center `}
+            >
+              <p>MODELS</p>
+              <MdKeyboardArrowRight />
+            </div>
+            <ul className={`bg-gray-600 ${turnRight ? "" : "hidden"}`}>
               <li>lam</li>
               <li>lam</li>
               <li>lam</li>
@@ -90,8 +165,24 @@ export default function Navbar({ isOpen }: Props) {
           <li>WARRANTY EXTENSION</li>
           <li>DESIGN</li>
           <li>INNOVATION & EXCELLENCE</li>
-          <li>SUSTAINABILITY</li>
-        </ul>
+          <li>SUSTAINABILITY</li> */}
+        </motion.ul>
+        {/* //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------//
+        //--------------------------------------------// */}
         <div
           className={`flex justify-between text-xl relative bg-green-500 delay-500 
         `}

@@ -46,15 +46,6 @@ export default function Header() {
               ></div>
             </div>
           </button>
-          {/*  ) : (
-            <button className=" " onClick={handleOpen}>
-              <div className=" w-8 h-8 relative">
-                <div className=" bg-white w-full h-[0.05rem] absolute top-0 bottom-0 my-auto rotate-45 transition-all duration-700"></div>
-
-                <div className=" bg-white w-full h-[0.05rem] absolute top-0 bottom-0 my-auto -rotate-45 transition-all duration-700"></div>
-              </div>
-            </button>
-          )} */}
         </div>
       </div>
       <Navbar isOpen={isOpen} />
