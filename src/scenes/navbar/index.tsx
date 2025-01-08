@@ -15,7 +15,6 @@ import Discord from "../../assets/discord.png";
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { motion, Variant } from "motion/react";
-
 type Props = {
   isOpen?: boolean;
 };
@@ -23,7 +22,7 @@ type Props = {
 export default function Navbar({ isOpen }: Props) {
   const [isOpen1, setIsOpen1] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
-  const [turnRight, setTurnRight] = useState<boolean>(false);
+  //const [turnRight, setTurnRight] = useState<boolean>(false);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   const variants: Variant = {
@@ -35,37 +34,37 @@ export default function Navbar({ isOpen }: Props) {
   };
   const navigationData = [
     {
-      id: 1,
+      id: "1",
       label: "MODELS",
       links: [
         {
-          id: 11,
+          id: "11",
           label: "TEMERARIO",
         },
         {
-          id: 12,
+          id: "12",
           label: "REVUELTO",
         },
       ],
     },
     {
-      id: 2,
+      id: "2",
       label: "BEYOND",
     },
     {
-      id: 3,
+      id: "3",
       label: "BEYOND",
     },
     {
-      id: 4,
+      id: "4",
       label: "BEYOND",
       links: [
         {
-          id: 11,
+          id: "11",
           label: "TEMERARIO",
         },
         {
-          id: 12,
+          id: "12",
           label: "REVUELTO",
         },
       ],
@@ -80,7 +79,34 @@ export default function Navbar({ isOpen }: Props) {
     setSelectedItems([...selectedItems, item.id]);
   }
 
-  console.log(turnRight);
+  function getNavItems(selectedItems: string[]) {
+    let itr = 0;
+    let result: any[] = [];
+    let links = [...navigationData];
+    if (selectedItems.length === 0) {
+      return navigationData;
+    }
+
+    {
+      let selectedLink;
+
+      for (let i = 0; i < links.length; i++) {
+        if (links[i].id === selectedItems[itr]) {
+          selectedLink = links[i];
+
+          if (selectedLink.links) {
+            result = [...selectedLink.links];
+          }
+          break;
+        }
+      }
+      links = [...result];
+      itr++;
+    }
+    return result;
+  }
+
+  //console.log(turnRight);
   function handleOpen1() {
     if (isOpen2) {
       setIsOpen2((isOpen2) => !isOpen2);
@@ -100,11 +126,11 @@ export default function Navbar({ isOpen }: Props) {
     setTurnRight((turnRight) => !turnRight);
   } */
 
-  function getNavItem(selectedItem: string[]) {
+  /* function getNavItem(selectedItem: string[]) {
     const result = [];
     const links = [...navigationData];
     const itr = 0;
-  }
+  } */
 
   //--------------------------------------------//
   //--------------------------------------------//
