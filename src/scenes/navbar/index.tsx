@@ -14,7 +14,8 @@ import Wechat from "../../assets/wechat.png";
 import Discord from "../../assets/discord.png";
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { motion, Variant } from "motion/react";
+import { AnimatePresence, motion, Variant } from "motion/react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 type Props = {
   isOpen?: boolean;
 };
@@ -148,7 +149,11 @@ export default function Navbar({ isOpen }: Props) {
   //--------------------------------------------//
   //--------------------------------------------//
   //--------------------------------------------//
-
+  const goBack = () => {
+    const selectedItemsClone = [...selectedItems];
+    selectedItemsClone.pop();
+    setSelectedItems([...selectedItemsClone]);
+  };
   return (
     <nav className="">
       <div>
@@ -174,7 +179,7 @@ export default function Navbar({ isOpen }: Props) {
           initial="in-view"
           animate={selectedItems.length > 0 ? "out-of-view" : "in-view"}
           custom={selectedItems.length > 0 ? -1 : 0}
-          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold transition-all ease-in duration-500 `}
+          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold  `}
         >
           {navigationData?.map((item: any) => {
             return (
@@ -222,6 +227,49 @@ export default function Navbar({ isOpen }: Props) {
           <li>INNOVATION & EXCELLENCE</li>
           <li>SUSTAINABILITY</li> */}
         </motion.ul>
+        {/* Subsequent levels */}
+        <AnimatePresence>
+          {selectedItems.length > 0 &&
+            selectedItems.map((id, index) => {
+              return (
+                <motion.ul
+                  key={id}
+                  variants={variants}
+                  initial="out-of-view"
+                  animate={
+                    index + 1 === selectedItems.length
+                      ? "in-view"
+                      : "out-of-view"
+                  }
+                  exit="out-of-view"
+                  custom={index + 1 === selectedItems.length ? 1 : -1}
+                  className="w-full duration-200 absolute pt-14 top-0
+                  "
+                >
+                  <li className="pb-4">
+                    <button className="flex items-center" onClick={goBack}>
+                      <FaChevronLeft /> <span className=" pl-2">Back</span>
+                    </button>
+                  </li>
+                  {getNavItems(selectedItems.slice(0, index + 1))?.map(
+                    (item: any) => {
+                      return (
+                        <li key={item.id} className="px-4 py-2">
+                          <button
+                            onClick={() => goToNextLevel(item)}
+                            className="flex flex-row items-center w-full"
+                          >
+                            <span className="pr-2">{item.label}</span>
+                            {item.links && <FaChevronRight />}
+                          </button>
+                        </li>
+                      );
+                    }
+                  )}
+                </motion.ul>
+              );
+            })}
+        </AnimatePresence>
         {/* //--------------------------------------------//
         //--------------------------------------------//
         //--------------------------------------------//
