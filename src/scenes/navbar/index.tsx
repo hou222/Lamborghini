@@ -1,5 +1,6 @@
 import Hexa from "../../assets/hexagon.png";
 import UpWhite from "../../assets/UpWhite.png";
+import LeftWhite from "../../assets/LeftWhite.png";
 import UpBlack from "../../assets/UpBlack.png";
 import Instagram from "../../assets/instagram.png";
 import Threads from "../../assets/threads.png";
@@ -45,6 +46,15 @@ export default function Navbar({ isOpen }: Props) {
         {
           id: "12",
           label: "REVUELTO",
+        },
+
+        {
+          id: "13",
+          label: "URUS",
+        },
+        {
+          id: "14",
+          label: "HURACÁN",
         },
       ],
     },
@@ -179,7 +189,7 @@ export default function Navbar({ isOpen }: Props) {
           initial="in-view"
           animate={selectedItems.length > 0 ? "out-of-view" : "in-view"}
           custom={selectedItems.length > 0 ? -1 : 0}
-          className={` flex flex-col pt-14 px-6 gap-4 overflow-auto text-2xl font-semibold  `}
+          className={` flex flex-col pt-14 text-2xl px-6 gap-4 overflow-auto  font-semibold  `}
         >
           {navigationData?.map((item: any) => {
             return (
@@ -243,25 +253,43 @@ export default function Navbar({ isOpen }: Props) {
                   }
                   exit="out-of-view"
                   custom={index + 1 === selectedItems.length ? 1 : -1}
-                  className="w-full duration-200 absolute pt-14 top-0
+                  className="w-full absolute pt-[68px]  top-0 text-2xl px-6 flex flex-col gap-4 font-semibold
                   "
                 >
-                  <li className="pb-4">
-                    <button className="flex items-center" onClick={goBack}>
-                      <FaChevronLeft /> <span className=" pl-2">Back</span>
+                  <li>
+                    <button
+                      className="flex items-center font-normal text-xl gap-2 "
+                      onClick={goBack}
+                    >
+                      <div
+                        className="w-[29px] h-[29px]  flex justify-center items-center relative 
+            "
+                      >
+                        <img
+                          src={Hexa}
+                          alt="hexagonal shape"
+                          className="absolute"
+                        />
+                        <img
+                          src={LeftWhite}
+                          alt="arrow up"
+                          className="w-2 h-2"
+                        />
+                      </div>
+                      <span>BACK</span>
                     </button>
                   </li>
                   {getNavItems(selectedItems.slice(0, index + 1))?.map(
                     (item: any) => {
                       return (
-                        <li key={item.id} className="px-4 py-2">
-                          <button
+                        <li key={item.id}>
+                          {/* <button
                             onClick={() => goToNextLevel(item)}
                             className="flex flex-row items-center w-full"
-                          >
-                            <span className="pr-2">{item.label}</span>
-                            {item.links && <FaChevronRight />}
-                          </button>
+                          > */}
+                          <span>{item.label}</span>
+                          {item.links && <FaChevronRight />}
+                          {/* </button> */}
                         </li>
                       );
                     }
