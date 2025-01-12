@@ -16,7 +16,7 @@ import Discord from "../../assets/discord.png";
 import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { AnimatePresence, motion, Variant } from "motion/react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 type Props = {
   isOpen?: boolean;
 };
@@ -64,21 +64,43 @@ export default function Navbar({ isOpen }: Props) {
     },
     {
       id: "3",
-      label: "BEYOND",
+      label: "WONERSHIP",
     },
     {
       id: "4",
-      label: "BEYOND",
-      links: [
-        {
-          id: "11",
-          label: "TEMERARIO",
-        },
-        {
-          id: "12",
-          label: "REVUELTO",
-        },
-      ],
+      label: "MOTOSPORT",
+    },
+    {
+      id: "4",
+      label: "DEALERSHIPS",
+    },
+    {
+      id: "4",
+      label: "STORE",
+    },
+    {
+      id: "4",
+      label: "CUSTOMIZATION",
+    },
+    {
+      id: "4",
+      label: "FINANCIAL SERVICES",
+    },
+    {
+      id: "4",
+      label: "WARRANTY EXTENSION",
+    },
+    {
+      id: "4",
+      label: "DESIGN",
+    },
+    {
+      id: "4",
+      label: "INNOVATION & EXCELLENCE",
+    },
+    {
+      id: "4",
+      label: "SUSTAINABILITY",
     },
   ];
 
@@ -223,19 +245,7 @@ export default function Navbar({ isOpen }: Props) {
               <li>lam</li>
             </ul>
           </li>
-          <li>BEYOND</li>
-          <li>WONERSHIP{">"}</li>
-          <li>MOTOSPORT{">"}</li>
-          <li>DEALERSHIPS</li>
-          <li>MUSEUM</li>
-          <li>STORE</li>
-          <li>CUSTOMIZATION</li>
-          <li>ACCESSORIES</li>
-          <li>FINANCIAL SERVICES</li>
-          <li>WARRANTY EXTENSION</li>
-          <li>DESIGN</li>
-          <li>INNOVATION & EXCELLENCE</li>
-          <li>SUSTAINABILITY</li> */}
+           */}
         </motion.ul>
         {/* Subsequent levels */}
         <AnimatePresence>
