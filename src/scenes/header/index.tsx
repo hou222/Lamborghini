@@ -13,10 +13,14 @@ export default function Header() {
 
   return (
     <header>
-      <div className="bg-black  flex justify-between px-4 p-2 fixed top-0 left-0 right-0 z-20">
-        <img src={Lambo} alt="Lamborghini Icon" className="w-11 h-11" />
+      <div className="bg-black w-full flex justify-between items-center px-4  py-2 lg:py-4 xl:px-14 transition-all duration-300 fixed top-0 left-0 right-0 z-20 ">
+        <img
+          src={Lambo}
+          alt="Lamborghini Icon"
+          className="w-11 h-11 lg:w-16 lg:h-16 lg:mr-5"
+        />
         <Navbar />
-        <div className="flex gap-7 items-center">
+        <div className="w-[150px] h-fit flex justify-between items-center  ">
           <img src={Message} alt="Message Icon" className="w-8 h-8" />
           <img src={Search} alt="Search Icon" className="w-6 h-6" />
 

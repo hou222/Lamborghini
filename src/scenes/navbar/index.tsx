@@ -112,7 +112,7 @@ export default function Navbar({ isOpen }: Props) {
     setSelectedItems([...selectedItems, item.id]);
   }
 
-  function getNavItems(selectedItems: string[]) {
+  /* function getNavItems(selectedItems: string[]) {
     let itr = 0;
     let result: any[] = [];
     let links = [...navigationData];
@@ -120,25 +120,39 @@ export default function Navbar({ isOpen }: Props) {
       return navigationData;
     }
 
-    {
-      let selectedLink;
+    let selectedLink;
 
-      for (let i = 0; i < links.length; i++) {
-        if (links[i].id === selectedItems[itr]) {
-          selectedLink = links[i];
+    for (let i = 0; i < links.length; i++) {
+      if (links[i].id === selectedItems[itr]) {
+        selectedLink = links[i];
 
-          if (selectedLink.links) {
-            result = [...selectedLink.links];
-          }
-          break;
+        if (selectedLink.links) {
+          result = [...selectedLink.links];
         }
+        break;
       }
-      links = [...result];
-      itr++;
     }
-    return result;
-  }
+    links = [...result];
+      itr++;
 
+    return result;
+  } */
+
+  const getNavItems = (selectedItems: string[]) => {
+    console.log(selectedItems);
+    if (selectedItems.length === 0) {
+      return navigationData;
+    }
+
+    let result = [...navigationData];
+
+    selectedItems.forEach((selectedId) => {
+      const selectedLink = result.find((link) => link.id === selectedId);
+      result =
+        selectedLink && selectedLink.links ? [...selectedLink.links] : [];
+    });
+    return result;
+  };
   //console.log(turnRight);
   function handleOpen1() {
     if (isOpen2) {
@@ -187,22 +201,22 @@ export default function Navbar({ isOpen }: Props) {
     setSelectedItems([...selectedItemsClone]);
   };
   return (
-    <nav className="">
-      <div>
-        <ul className="text-white  hidden lg:flex">
-          <li>MODELS</li>
-          <li>BEYOND</li>
-          <li>WONERSHIP</li>
-          <li>MOTOSPORT</li>
+    <nav className="lg:grow">
+      <div className=" hidden lg:flex lg:justify-between lg:items-center h-full px-5 xl:pr-12 text-sm xl:text-base transition-all">
+        <ul className="text-white hidden lg:flex gap-2 xl:gap-6">
+          <li className="hover:cursor-pointer">MODELS</li>
+          <li className="hover:cursor-pointer">BEYOND</li>
+          <li className="hover:cursor-pointer">OWNERSHIP</li>
+          <li className="hover:cursor-pointer">MOTOSPORT</li>
         </ul>
-        <ul className="text-white  hidden lg:flex">
-          <li>DEALERSHIPS</li>
-          <li>MUSEUM</li>
-          <li>STORE</li>
+        <ul className="text-white gap-2 hidden lg:flex xl:gap-6">
+          <li className="hover:cursor-pointer">DEALERSHIPS</li>
+          <li className="hover:cursor-pointer">MUSEUM</li>
+          <li className="hover:cursor-pointer">STORE</li>
         </ul>
       </div>
       <div
-        className={` text-white bg-black fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-in duration-500 right-0  left-0 lg:hidden ${
+        className={` text-white bg-black fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-out duration-700 right-0  left-0 lg:hidden ${
           isOpen ? "top-0   pt-14" : "-top-[100%]"
         } `}
       >
@@ -211,7 +225,7 @@ export default function Navbar({ isOpen }: Props) {
           initial="in-view"
           animate={selectedItems.length > 0 ? "out-of-view" : "in-view"}
           custom={selectedItems.length > 0 ? -1 : 0}
-          className={` flex flex-col pt-14 text-2xl px-6 gap-4 overflow-auto  font-semibold  `}
+          className={` flex flex-col pt-14 text-2xl px-6 md:px-14 gap-4 overflow-auto  font-semibold  `}
         >
           {navigationData?.map((item: any) => {
             return (
@@ -219,6 +233,7 @@ export default function Navbar({ isOpen }: Props) {
                 <button
                   onClick={() => {
                     goToNextLevel(item);
+                    console.log(item);
                   }}
                   className="w-full flex justify-between items-center"
                 >
@@ -263,7 +278,7 @@ export default function Navbar({ isOpen }: Props) {
                   }
                   exit="out-of-view"
                   custom={index + 1 === selectedItems.length ? 1 : -1}
-                  className="w-full absolute pt-[68px]  top-0 text-2xl px-6 flex flex-col gap-4 font-semibold
+                  className="w-full absolute pt-[68px]  top-0 text-2xl px-6 md:px-14 flex flex-col gap-4 font-semibold
                   "
                 >
                   <li>
