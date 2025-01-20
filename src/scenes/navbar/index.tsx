@@ -34,6 +34,8 @@ export default function Navbar({ isOpen }: Props) {
       transition: { type: "tween", ease: "easeOut" },
     }),
   };
+  const hoverEff =
+    "relative hover:cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-left after:mt-1";
   const navigationData = [
     {
       id: "1",
@@ -202,17 +204,17 @@ export default function Navbar({ isOpen }: Props) {
   };
   return (
     <nav className="lg:grow">
-      <div className=" hidden lg:flex lg:justify-between lg:items-center h-full px-5 xl:pr-12 text-sm xl:text-base transition-all">
-        <ul className="text-white hidden lg:flex gap-2 xl:gap-6">
-          <li className="hover:cursor-pointer">MODELS</li>
-          <li className="hover:cursor-pointer">BEYOND</li>
-          <li className="hover:cursor-pointer">OWNERSHIP</li>
-          <li className="hover:cursor-pointer">MOTOSPORT</li>
+      <div className=" hidden lg:flex lg:justify-between lg:items-center h-full px-5 xl:pl-8 xl:pr-12 text-sm font-light xl:text-base transition-all">
+        <ul className="text-white hidden lg:flex gap-2 xl:gap-6 ">
+          <li className={hoverEff}>MODELS</li>
+          <li className={hoverEff}>BEYOND</li>
+          <li className={hoverEff}>OWNERSHIP</li>
+          <li className={hoverEff}>MOTOSPORT</li>
         </ul>
         <ul className="text-white gap-2 hidden lg:flex xl:gap-6">
-          <li className="hover:cursor-pointer">DEALERSHIPS</li>
-          <li className="hover:cursor-pointer">MUSEUM</li>
-          <li className="hover:cursor-pointer">STORE</li>
+          <li className={hoverEff}>DEALERSHIPS</li>
+          <li className={hoverEff}>MUSEUM</li>
+          <li className={hoverEff}>STORE</li>
         </ul>
       </div>
       <div
