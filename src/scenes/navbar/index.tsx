@@ -24,7 +24,6 @@ type Props = {
 export default function Navbar({ isOpen }: Props) {
   const [isOpen1, setIsOpen1] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
-  //const [turnRight, setTurnRight] = useState<boolean>(false);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   const variants: Variant = {
@@ -155,7 +154,6 @@ export default function Navbar({ isOpen }: Props) {
     });
     return result;
   };
-  //console.log(turnRight);
   function handleOpen1() {
     if (isOpen2) {
       setIsOpen2((isOpen2) => !isOpen2);
@@ -171,32 +169,6 @@ export default function Navbar({ isOpen }: Props) {
     setIsOpen2((isOpen2) => !isOpen2);
   }
 
-  /* function handleSlide() {
-    setTurnRight((turnRight) => !turnRight);
-  } */
-
-  /* function getNavItem(selectedItem: string[]) {
-    const result = [];
-    const links = [...navigationData];
-    const itr = 0;
-  } */
-
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
-  //--------------------------------------------//
   const goBack = () => {
     const selectedItemsClone = [...selectedItems];
     selectedItemsClone.pop();
@@ -245,26 +217,7 @@ export default function Navbar({ isOpen }: Props) {
               </li>
             );
           })}
-          {/* <li>
-            <div
-              onClick={handleSlide}
-              className={`  w-full flex justify-between items-center `}
-            >
-              <p>MODELS</p>
-              <MdKeyboardArrowRight />
-            </div>
-            <ul className={`bg-gray-600 ${turnRight ? "" : "hidden"}`}>
-              <li>lam</li>
-              <li>lam</li>
-              <li>lam</li>
-              <li>lam</li>
-              <li>lam</li>
-              <li>lam</li>
-            </ul>
-          </li>
-           */}
         </motion.ul>
-        {/* Subsequent levels */}
         <AnimatePresence>
           {selectedItems.length > 0 &&
             selectedItems.map((id, index) => {
@@ -325,22 +278,7 @@ export default function Navbar({ isOpen }: Props) {
               );
             })}
         </AnimatePresence>
-        {/* //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------//
-        //--------------------------------------------// */}
+
         <div
           className={`flex justify-between text-xl relative bg-green-500 delay-500 
         `}
