@@ -4,7 +4,13 @@ import { AnimatePresence, motion, Variant } from "motion/react";
 import { FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
 import Hexa from "../../assets/hexagon.png";
-export default function Menu() {
+import { NavigationType } from "../../shared/types";
+
+type Props = {
+  navigationData: NavigationType;
+};
+
+export default function Menu({ navigationData }: Props) {
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
   const variants: Variant = {
     "in-view": { x: "0px", transition: { type: "tween", ease: "easeOut" } },
@@ -13,75 +19,7 @@ export default function Menu() {
       transition: { type: "tween", ease: "easeOut" },
     }),
   };
-  const navigationData = [
-    {
-      id: "1",
-      label: "MODELS",
-      links: [
-        {
-          id: "11",
-          label: "TEMERARIO",
-        },
-        {
-          id: "12",
-          label: "REVUELTO",
-        },
 
-        {
-          id: "13",
-          label: "URUS",
-        },
-        {
-          id: "14",
-          label: "HURACÁN",
-        },
-      ],
-    },
-    {
-      id: "2",
-      label: "BEYOND",
-    },
-    {
-      id: "3",
-      label: "WONERSHIP",
-    },
-    {
-      id: "4",
-      label: "MOTOSPORT",
-    },
-    {
-      id: "4",
-      label: "DEALERSHIPS",
-    },
-    {
-      id: "4",
-      label: "STORE",
-    },
-    {
-      id: "4",
-      label: "CUSTOMIZATION",
-    },
-    {
-      id: "4",
-      label: "FINANCIAL SERVICES",
-    },
-    {
-      id: "4",
-      label: "WARRANTY EXTENSION",
-    },
-    {
-      id: "4",
-      label: "DESIGN",
-    },
-    {
-      id: "4",
-      label: "INNOVATION & EXCELLENCE",
-    },
-    {
-      id: "4",
-      label: "SUSTAINABILITY",
-    },
-  ];
   function goToNextLevel(item: any) {
     if (!item.links) {
       return;
@@ -145,7 +83,7 @@ export default function Menu() {
         custom={selectedItems.length > 0 ? -1 : 0}
         className={` flex flex-col pt-14 text-2xl px-6 md:px-14 gap-4 overflow-auto  font-semibold  `}
       >
-        {navigationData?.map((item: any) => {
+        {navigationData?.map((item) => {
           return (
             <li key={item.id}>
               <button

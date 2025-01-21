@@ -20,6 +20,76 @@ type Props = {
 export default function Navbar({ isOpen }: Props) {
   const [isOpen1, setIsOpen1] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
+
+  const navigationData = [
+    {
+      id: "1",
+      label: "MODELS",
+      links: [
+        {
+          id: "11",
+          label: "TEMERARIO",
+        },
+        {
+          id: "12",
+          label: "REVUELTO",
+        },
+
+        {
+          id: "13",
+          label: "URUS",
+        },
+        {
+          id: "14",
+          label: "HURACÁN",
+        },
+      ],
+    },
+    {
+      id: "2",
+      label: "BEYOND",
+    },
+    {
+      id: "3",
+      label: "OWNERSHIP",
+    },
+    {
+      id: "4",
+      label: "MOTOSPORT",
+    },
+    {
+      id: "5",
+      label: "DEALERSHIPS",
+    },
+    {
+      id: "6",
+      label: "STORE",
+    },
+    {
+      id: "7",
+      label: "CUSTOMIZATION",
+    },
+    {
+      id: "8",
+      label: "FINANCIAL SERVICES",
+    },
+    {
+      id: "9",
+      label: "WARRANTY EXTENSION",
+    },
+    {
+      id: "10",
+      label: "DESIGN",
+    },
+    {
+      id: "11",
+      label: "INNOVATION & EXCELLENCE",
+    },
+    {
+      id: "12",
+      label: "SUSTAINABILITY",
+    },
+  ];
   const languages = [
     "ITALIAN",
     "FRENCH",
@@ -64,6 +134,7 @@ export default function Navbar({ isOpen }: Props) {
           <li className={hoverEff}>BEYOND</li>
           <li className={hoverEff}>OWNERSHIP</li>
           <li className={hoverEff}>MOTOSPORT</li>
+          {}
         </ul>
         <ul className="text-white gap-2 hidden lg:flex xl:gap-6">
           <li className={hoverEff}>DEALERSHIPS</li>
@@ -76,7 +147,7 @@ export default function Navbar({ isOpen }: Props) {
           isOpen ? "top-0 pt-14" : "-top-[100%]"
         } `}
       >
-        <Menu />
+        <Menu navigationData={navigationData} />
 
         <div
           className={`flex justify-between text-xl relative bg-green-500 delay-500 
@@ -88,7 +159,7 @@ export default function Navbar({ isOpen }: Props) {
           <ul
             className={`absolute transition-all ease-in duration-300 flex flex-col justify-center px-6 gap-4  items-start bg-white text-black text-base left-0 h-[330px] w-1/2 ${
               isOpen1 ? "-top-[330px] border-b" : "top-0"
-            } ${!isOpen && " "}`}
+            } `}
           >
             {languages.map((language) => (
               <li key={language}>{language}</li>
