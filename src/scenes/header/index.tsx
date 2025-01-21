@@ -2,7 +2,6 @@ import { useState } from "react";
 import Lambo from "../../assets/Lamborghini.png";
 import Message from "../../assets/Message.png";
 import Search from "../../assets/Search.png";
-
 import Navbar from "../navbar";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +29,7 @@ export default function Header() {
             }`}
             onClick={handleOpen}
           >
-            <div className="w-6 h-4    relative">
+            <div className="w-6 h-4 relative">
               <div
                 className={`${
                   isOpen &&
