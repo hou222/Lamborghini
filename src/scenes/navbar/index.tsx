@@ -89,6 +89,30 @@ export default function Navbar({ isOpen }: Props) {
       id: "12",
       label: "SUSTAINABILITY",
     },
+    {
+      id: "13",
+      label: "HISTORY",
+    },
+    {
+      id: "14",
+      label: "DIRVING PROGRAMS",
+    },
+    {
+      id: "15",
+      label: "LOUNGE",
+    },
+    {
+      id: "16",
+      label: "CLUB",
+    },
+    {
+      id: "17",
+      label: "NEWS",
+    },
+    {
+      id: "18",
+      label: "PODCAST",
+    },
   ];
   const languages = [
     "ITALIAN",
@@ -130,11 +154,13 @@ export default function Navbar({ isOpen }: Props) {
     <nav className="lg:grow">
       <div className=" hidden lg:flex lg:justify-between lg:items-center h-full px-5 xl:pl-8 xl:pr-12 text-sm font-light xl:text-base transition-all">
         <ul className="text-white hidden lg:flex gap-2 xl:gap-6 ">
-          <li className={hoverEff}>MODELS</li>
+          {/* <li className={hoverEff}>MODELS</li>
           <li className={hoverEff}>BEYOND</li>
           <li className={hoverEff}>OWNERSHIP</li>
-          <li className={hoverEff}>MOTOSPORT</li>
-          {}
+          <li className={hoverEff}>MOTOSPORT</li> */}
+          {navigationData.map((item, index) =>
+            index < 4 ? <li className={hoverEff}>{item.label}</li> : ""
+          )}
         </ul>
         <ul className="text-white gap-2 hidden lg:flex xl:gap-6">
           <li className={hoverEff}>DEALERSHIPS</li>
