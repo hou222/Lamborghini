@@ -63,11 +63,19 @@ export default function Navbar({ isOpen }: Props) {
     },
     {
       id: "6",
+      label: "MUSUM",
+    },
+    {
+      id: "66",
       label: "STORE",
     },
     {
       id: "7",
       label: "CUSTOMIZATION",
+    },
+    {
+      id: "77",
+      label: "ACCESSORIES",
     },
     {
       id: "8",
@@ -137,7 +145,7 @@ export default function Navbar({ isOpen }: Props) {
     { name: "DISCORD", icon: Discord },
   ];
   const hoverEff =
-    "relative hover:cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-left after:mt-1";
+    "relative hover:cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-left after:mt-1 ";
 
   function handleOpen1() {
     setIsOpen2(false);
@@ -154,29 +162,33 @@ export default function Navbar({ isOpen }: Props) {
     <nav className="lg:grow">
       <div className=" hidden lg:flex lg:justify-between lg:items-center h-full px-5 xl:pl-8 xl:pr-12 text-sm font-light xl:text-base transition-all">
         <ul className="text-white hidden lg:flex gap-2 xl:gap-6 ">
-          {/* <li className={hoverEff}>MODELS</li>
-          <li className={hoverEff}>BEYOND</li>
-          <li className={hoverEff}>OWNERSHIP</li>
-          <li className={hoverEff}>MOTOSPORT</li> */}
           {navigationData.map((item, index) =>
             index < 4 ? <li className={hoverEff}>{item.label}</li> : ""
           )}
         </ul>
         <ul className="text-white gap-2 hidden lg:flex xl:gap-6">
-          <li className={hoverEff}>DEALERSHIPS</li>
-          <li className={hoverEff}>MUSEUM</li>
-          <li className={hoverEff}>STORE</li>
+          {navigationData.map((item, index) =>
+            index >= 4 && index < 7 ? (
+              <li className={hoverEff}>{item.label}</li>
+            ) : (
+              ""
+            )
+          )}
         </ul>
       </div>
       <div
-        className={` text-white bg-black fixed h-screen flex flex-col justify-between overflow-clip transition-all ease-out duration-700 right-0  left-0 lg:hidden ${
+        className={`text-white bg-black fixed h-screen lg:h-auto lg:pb-10 flex flex-col justify-between  overflow-clip transition-all ease-out duration-700 right-0  left-0 ${
           isOpen ? "top-0 pt-14" : "-top-[100%]"
         } `}
       >
-        <Menu navigationData={navigationData} />
+        <Menu
+          navigationData={navigationData}
+          languages={languages}
+          social={social}
+        />
 
         <div
-          className={`flex justify-between text-xl relative bg-green-500 delay-500 
+          className={`flex justify-between text-xl relative bg-green-500 delay-500 lg:hidden
         `}
         >
           <BottomMenuButton handleOpen={handleOpen1} isOpen={isOpen1}>

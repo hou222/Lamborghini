@@ -5,12 +5,15 @@ import { FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
 import Hexa from "../../assets/hexagon.png";
 import { NavigationType } from "../../shared/types";
+import { div } from "motion/react-client";
 
 type Props = {
   navigationData: NavigationType;
+  languages: string[];
+  social: string[];
 };
 
-export default function Menu({ navigationData }: Props) {
+export default function Menu({ navigationData, languages, social }: Props) {
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
   const variants: Variant = {
     "in-view": { x: "0px", transition: { type: "tween", ease: "easeOut" } },
@@ -81,7 +84,7 @@ export default function Menu({ navigationData }: Props) {
         initial="in-view"
         animate={selectedItems.length > 0 ? "out-of-view" : "in-view"}
         custom={selectedItems.length > 0 ? -1 : 0}
-        className={` flex flex-col pt-14 text-2xl px-6 md:px-14 gap-4 overflow-auto  font-semibold  `}
+        className={` flex flex-col pt-14 text-2xl px-6 md:px-14 gap-4 overflow-auto  font-semibold lg:hidden `}
       >
         {navigationData?.map((item) => {
           return (
@@ -154,6 +157,28 @@ export default function Menu({ navigationData }: Props) {
             );
           })}
       </AnimatePresence>
+      {
+        <div>
+          <ul className="hidden lg:grid grid-flow-col grid-rows-5 pt-14 text-2xl font-semibold gap-4 w-full place-items-start px-[120px]">
+            {navigationData.map((item: any, index: number) =>
+              index >= 7 ? <li key={item.id}>{item.label}</li> : ""
+            )}
+          </ul>
+          <div className="hidden lg:block w-full h-0.5 my-5 ml-20 bg-white"></div>
+          <div>
+            <div>
+              <div>Languages</div>
+              <ul>
+                {languages.map((item, index) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      }
     </>
   );
 }

@@ -19,7 +19,7 @@ export default function Header() {
           className="w-11 h-11 lg:w-[61px] lg:h-[61px] lg:mr-5"
         />
         <Navbar />
-        <div className="w-[150px] h-fit flex justify-between items-center  ">
+        <div className="w-[150px] h-fit flex justify-between items-center">
           <img src={Message} alt="Message Icon" className="w-8 h-8" />
           <img src={Search} alt="Search Icon" className="w-6 h-6" />
 
