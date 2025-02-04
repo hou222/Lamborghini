@@ -158,24 +158,39 @@ export default function Menu({ navigationData, languages, social }: Props) {
           })}
       </AnimatePresence>
       {
-        <div>
-          <ul className="hidden lg:grid grid-flow-col grid-rows-5 pt-14 text-2xl font-semibold gap-4 w-full place-items-start px-[120px]">
-            {navigationData.map((item: any, index: number) =>
-              index >= 7 ? <li key={item.id}>{item.label}</li> : ""
+        <div className="hidden  lg:block">
+          <ul className="grid grid-flow-col grid-cols-[460px_460px_450px] grid-rows-5 pt-14 text-2xl font-semibold gap-4 w-full place-items-start border-b-[0.5px] pb-10 border-[#2e2e2e]">
+            {navigationData.map(
+              (item: any, index: number) =>
+                index >= 7 && <li key={item.id}>{item.label}</li>
             )}
           </ul>
-          <div className="hidden lg:block w-full h-0.5 my-5 ml-20 bg-white"></div>
-          <div>
+          {/* <div className=" w-full h-0.5 my-5 ml-20 bg-white"></div> */}
+          <div className=" grid  grid-cols-[460px_460px_450px] gap-4 pt-6 text-lg font-semibold">
             <div>
-              <div>Languages</div>
+              <div className="text-[#666]">LANGUAGES</div>
+              <ul className="grid grid-cols-[80px_80px_80px] gap-4 bg-blue-400 pt-4">
+                {languages.map((item, index) => (
+                  <li>{item} </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="text-[#666]">Languages</div>
+              <ul>
+                {languages.map((item, index) => (
+                  <li>{item} </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="text-[#666]">Languages</div>
               <ul>
                 {languages.map((item, index) => (
                   <li>{item}</li>
                 ))}
               </ul>
             </div>
-            <div></div>
-            <div></div>
           </div>
         </div>
       }

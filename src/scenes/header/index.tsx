@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="bg-black w-full flex justify-between items-center px-4  py-2 lg:py-4 xl:px-[60px] transition-all duration-300 fixed top-0 left-0 right-0 z-20 ">
+      <div className="bg-[#181818] w-full flex justify-between items-center px-4  py-2 lg:py-4 xl:px-[60px] transition-all duration-300 fixed top-0 left-0 right-0 z-20 ">
         <img
           src={Lambo}
           alt="Lamborghini Icon"
