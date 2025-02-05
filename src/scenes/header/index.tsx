@@ -1,13 +1,19 @@
 import { useState } from "react";
 import Lambo from "../../assets/Lamborghini.png";
 import Message from "../../assets/Message.png";
-import Search from "../../assets/Search.png";
+import SearchIcon from "../../assets/Search.png";
+
 import Navbar from "../navbar";
+import Search from "../search";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
 
   function handleOpen() {
     setIsOpen((isOpen) => !isOpen);
+  }
+  function handleOpenSearch() {
+    setIsOpenSearch((isOpen) => !isOpen);
   }
 
   return (
@@ -21,12 +27,13 @@ export default function Header() {
         <Navbar />
         <div className="w-[150px] h-fit flex justify-between items-center">
           <img src={Message} alt="Message Icon" className="w-8 h-8" />
-          <img src={Search} alt="Search Icon" className="w-6 h-6" />
+
+          <button onClick={handleOpenSearch}>
+            <img src={SearchIcon} alt="Search Icon" className="w-6 h-6" />
+          </button>
 
           <button
-            className={`w-8 h-7 flex justify-center items-center focus:ring-1 ring-white rounded-sm focus:bg-[#373737] ${
-              isOpen ? "" : ""
-            }`}
+            className={`w-8 h-7 flex justify-center items-center focus:ring-1 ring-white rounded-sm focus:bg-[#373737] `}
             onClick={handleOpen}
           >
             <div className="w-6 h-4 relative">
@@ -52,6 +59,7 @@ export default function Header() {
         </div>
       </div>
       <Navbar isOpen={isOpen} />
+      <Search isOpenSearch={isOpenSearch} handleOpenSearch={handleOpenSearch} />
     </header>
   );
 }

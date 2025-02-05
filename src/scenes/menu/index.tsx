@@ -11,9 +11,15 @@ type Props = {
   navigationData: NavigationType;
   languages: string[];
   social: string[];
+  hoverEff: string;
 };
 
-export default function Menu({ navigationData, languages, social }: Props) {
+export default function Menu({
+  navigationData,
+  languages,
+  social,
+  hoverEff,
+}: Props) {
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
   const variants: Variant = {
     "in-view": { x: "0px", transition: { type: "tween", ease: "easeOut" } },
@@ -162,32 +168,38 @@ export default function Menu({ navigationData, languages, social }: Props) {
           <ul className="grid grid-flow-col grid-cols-[460px_460px_450px] grid-rows-5 pt-14 text-2xl font-semibold gap-4 w-full place-items-start border-b-[0.5px] pb-10 border-[#2e2e2e]">
             {navigationData.map(
               (item: any, index: number) =>
-                index >= 7 && <li key={item.id}>{item.label}</li>
+                index >= 7 && (
+                  <li key={item.id} className={hoverEff}>
+                    {item.label}
+                  </li>
+                )
             )}
           </ul>
           {/* <div className=" w-full h-0.5 my-5 ml-20 bg-white"></div> */}
-          <div className=" grid  grid-cols-[460px_460px_450px] gap-4 pt-6 text-lg font-semibold">
+          <div className=" grid  grid-cols-[460px_460px_450px] row-[4_4_5] gap-4 pt-6 text-lg font-semibold">
             <div>
               <div className="text-[#666]">LANGUAGES</div>
-              <ul className="grid grid-cols-[80px_80px_80px] gap-4 bg-blue-400 pt-4">
-                {languages.map((item, index) => (
-                  <li>{item} </li>
-                ))}
+              <ul className="grid grid-cols-[80px_80px_80px] gap-4 pt-4">
+                {languages.map((item, index) =>
+                  item === "ENGLISH" ? (
+                    <li className="text-[#666] cursor-pointer">{item} </li>
+                  ) : (
+                    <li className="cursor-pointer">{item} </li>
+                  )
+                )}
               </ul>
             </div>
             <div>
-              <div className="text-[#666]">Languages</div>
-              <ul>
-                {languages.map((item, index) => (
-                  <li>{item} </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className="text-[#666]">Languages</div>
-              <ul>
-                {languages.map((item, index) => (
-                  <li>{item}</li>
+              <div className="text-[#666]">SOCIAL</div>
+              <ul className="grid grid-cols-6 gap-4  pt-4 pr-40 bg-slate-600">
+                {social.map((item, index) => (
+                  <li>
+                    <img
+                      src={item.icon}
+                      alt={item.name}
+                      className="w-[25px] h-[25px]"
+                    />
+                  </li>
                 ))}
               </ul>
             </div>

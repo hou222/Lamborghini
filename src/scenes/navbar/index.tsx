@@ -123,6 +123,7 @@ export default function Navbar({ isOpen }: Props) {
     },
   ];
   const languages = [
+    "ENGLISH",
     "ITALIAN",
     "FRENCH",
     "SPANSH",
@@ -185,6 +186,7 @@ export default function Navbar({ isOpen }: Props) {
           navigationData={navigationData}
           languages={languages}
           social={social}
+          hoverEff={hoverEff}
         />
 
         <div
@@ -200,7 +202,7 @@ export default function Navbar({ isOpen }: Props) {
             } `}
           >
             {languages.map((language) => (
-              <li key={language}>{language}</li>
+              <li key={language}>{language !== "ENGLISH" && language}</li>
             ))}
           </ul>
 
