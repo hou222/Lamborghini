@@ -15,7 +15,7 @@ function App() {
           <p>lkjljljlj</p>
           <p>lkjljljlj</p>
         </div>
-        <div className="bg-slate-400">
+        {/* <div className="bg-slate-400">
           <p>lkjljljlj</p>
           <p>lkjljljlj</p>
           <p>lkjljljlj</p>
@@ -59,7 +59,7 @@ function App() {
           <p>lkjljljlj</p>
           <p>lkjljljlj</p>
           <p>lkjljljlj</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

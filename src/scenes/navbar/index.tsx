@@ -55,7 +55,7 @@ export default function Navbar({ isOpen }: Props) {
     },
     {
       id: "4",
-      label: "MOTOSPORT",
+      label: "MOTORSPORT",
     },
     {
       id: "5",
@@ -164,13 +164,21 @@ export default function Navbar({ isOpen }: Props) {
       <div className=" hidden lg:flex lg:justify-between lg:items-center h-full px-5 xl:pl-8 xl:pr-12 text-sm font-light xl:text-base transition-all">
         <ul className="text-white hidden lg:flex gap-2 xl:gap-6 ">
           {navigationData.map((item, index) =>
-            index < 4 ? <li className={hoverEff}>{item.label}</li> : ""
+            index < 4 ? (
+              <li className={hoverEff} key={item.label}>
+                {item.label}
+              </li>
+            ) : (
+              ""
+            )
           )}
         </ul>
         <ul className="text-white gap-2 hidden lg:flex xl:gap-6">
           {navigationData.map((item, index) =>
             index >= 4 && index < 7 ? (
-              <li className={hoverEff}>{item.label}</li>
+              <li className={hoverEff} key={index}>
+                {item.label}
+              </li>
             ) : (
               ""
             )
@@ -215,7 +223,7 @@ export default function Navbar({ isOpen }: Props) {
             } `}
           >
             {social.map((social) => (
-              <li className="flex gap-3 items-center ">
+              <li className="flex gap-3 items-center " key={social.name}>
                 <img
                   src={social.icon}
                   alt="icon"

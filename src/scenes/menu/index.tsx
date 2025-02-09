@@ -4,13 +4,12 @@ import { AnimatePresence, motion, Variant } from "motion/react";
 import { FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
 import Hexa from "../../assets/hexagon.png";
-import { NavigationType } from "../../shared/types";
-import { div } from "motion/react-client";
+import { NavigationType, SocialType } from "../../shared/types";
 
 type Props = {
-  navigationData: NavigationType;
+  navigationData: NavigationType[];
   languages: string[];
-  social: string[];
+  social: SocialType[];
   hoverEff: string;
 };
 
@@ -20,7 +19,7 @@ export default function Menu({
   social,
   hoverEff,
 }: Props) {
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const variants: Variant = {
     "in-view": { x: "0px", transition: { type: "tween", ease: "easeOut" } },
     "out-of-view": (index: number) => ({
@@ -28,8 +27,8 @@ export default function Menu({
       transition: { type: "tween", ease: "easeOut" },
     }),
   };
-
-  function goToNextLevel(item: any) {
+  console.log(selectedItems);
+  function goToNextLevel(item: NavigationType) {
     if (!item.links) {
       return;
     }
@@ -98,7 +97,6 @@ export default function Menu({
               <button
                 onClick={() => {
                   goToNextLevel(item);
-                  console.log(item);
                 }}
                 className="w-full flex justify-between items-center"
               >
@@ -167,7 +165,7 @@ export default function Menu({
         <div className="hidden  lg:block">
           <ul className="grid grid-flow-col grid-cols-[460px_460px_450px] grid-rows-5 pt-14 text-2xl font-semibold gap-4 w-full place-items-start border-b-[0.5px] pb-10 border-[#2e2e2e]">
             {navigationData.map(
-              (item: any, index: number) =>
+              (item, index: number) =>
                 index >= 7 && (
                   <li key={item.id} className={hoverEff}>
                     {item.label}
@@ -180,11 +178,15 @@ export default function Menu({
             <div>
               <div className="text-[#666]">LANGUAGES</div>
               <ul className="grid grid-cols-[80px_80px_80px] gap-4 pt-4">
-                {languages.map((item, index) =>
+                {languages.map((item) =>
                   item === "ENGLISH" ? (
-                    <li className="text-[#666] cursor-pointer">{item} </li>
+                    <li className="text-[#666] cursor-pointer" key={item}>
+                      {item}
+                    </li>
                   ) : (
-                    <li className="cursor-pointer">{item} </li>
+                    <li className="cursor-pointer" key={item}>
+                      {item}
+                    </li>
                   )
                 )}
               </ul>
@@ -193,7 +195,7 @@ export default function Menu({
               <div className="text-[#666]">SOCIAL</div>
               <ul className="grid grid-cols-6 gap-4  pt-4 pr-40 bg-slate-600">
                 {social.map((item, index) => (
-                  <li>
+                  <li key={index}>
                     <img
                       src={item.icon}
                       alt={item.name}
