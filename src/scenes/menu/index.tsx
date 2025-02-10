@@ -1,6 +1,6 @@
 import LeftWhite from "../../assets/LeftWhite.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { AnimatePresence, motion, Variant } from "motion/react";
+import { AnimatePresence, motion, Variants } from "motion/react";
 import { FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
 import Hexa from "../../assets/hexagon.png";
@@ -20,14 +20,13 @@ export default function Menu({
   hoverEff,
 }: Props) {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const variants: Variant = {
+  const variants: Variants = {
     "in-view": { x: "0px", transition: { type: "tween", ease: "easeOut" } },
     "out-of-view": (index: number) => ({
       x: index > 0 ? "100%" : "-100%",
       transition: { type: "tween", ease: "easeOut" },
     }),
   };
-  console.log(selectedItems);
   function goToNextLevel(item: NavigationType) {
     if (!item.links) {
       return;
@@ -142,21 +141,19 @@ export default function Menu({
                     <span>BACK</span>
                   </button>
                 </li>
-                {getNavItems(selectedItems.slice(0, index + 1))?.map(
-                  (item: any) => {
-                    return (
-                      <li key={item.id}>
-                        {/* <button
+                {getNavItems(selectedItems.slice(0, index + 1))?.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      {/* <button
                             onClick={() => goToNextLevel(item)}
                             className="flex flex-row items-center w-full"
                           > */}
-                        <span>{item.label}</span>
-                        {item.links && <FaChevronRight />}
-                        {/* </button> */}
-                      </li>
-                    );
-                  }
-                )}
+                      <span>{item.label}</span>
+                      {item.links && <FaChevronRight />}
+                      {/* </button> */}
+                    </li>
+                  );
+                })}
               </motion.ul>
             );
           })}
