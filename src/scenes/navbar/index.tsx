@@ -186,7 +186,7 @@ export default function Navbar({ isOpen }: Props) {
         </ul>
       </div>
       <div
-        className={`text-white bg-[#181818] fixed h-screen lg:h-auto lg:pb-10 flex flex-col justify-between  overflow-clip transition-all ease-out duration-700 right-0  left-0 lg:px-[150px] ${
+        className={`text-white bg-[#181818] fixed h-screen lg:h-auto lg:pb-10 flex flex-col justify-between  overflow-clip transition-all ease-out duration-700 right-0  left-0 lg:px-[150px] z-20 ${
           isOpen ? "top-0 pt-14" : "-top-[100%]"
         } `}
       >
@@ -218,7 +218,7 @@ export default function Navbar({ isOpen }: Props) {
             SOCIAL
           </BottomMenuButton>
           <ul
-            className={`absolute transition-all ease-in duration-300 flex flex-col justify-center px-6 gap-4 items-start bg-white text-black text-base right-0 h-[480px] w-1/2 ${
+            className={`absolute transition-all ease-in duration-300 flex flex-col justify-center px-6 gap-4 items-start bg-white text-black text-base right-0 h-[480px] w-1/2  ${
               isOpen2 ? "-top-[480px] border-b" : "top-0"
             } `}
           >

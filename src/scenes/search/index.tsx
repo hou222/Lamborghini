@@ -8,7 +8,7 @@ type Props = {
 export default function Search({ isOpenSearch, handleOpenSearch }: Props) {
   return (
     <div
-      className={`text-white bg-[#181818] fixed h-screen lg:h-screen lg:pb-10    transition-all ease-out duration-700 right-0  left-0 flex  items-center  ${
+      className={`text-white bg-[#181818] fixed h-screen lg:h-screen lg:pb-10    transition-all ease-out duration-700 right-0  left-0 flex  items-center z-20 ${
         isOpenSearch ? "top-0 pt-14 lg:pt-10" : "-top-[100%]"
       } `}
     >

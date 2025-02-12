@@ -29,7 +29,7 @@ export default function Header() {
     <header>
       <div
         ref={ref}
-        className="bg-[#181818] w-full h-[60px] lg:h-[93px] flex justify-between items-center px-4  py-2 lg:py-4 xl:px-[60px] transition-all duration-300 fixed top-0 left-0 right-0 z-20 "
+        className="bg-[#181818] w-full h-[60px] lg:h-[93px] flex justify-between items-center px-4  py-2 lg:py-4 xl:px-[60px] transition-all duration-300 fixed top-0 left-0 right-0 z-30 "
       >
         <img
           src={Lambo}
