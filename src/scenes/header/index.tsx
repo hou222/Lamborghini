@@ -6,11 +6,113 @@ import SearchIcon from "../../assets/Search.png";
 import Navbar from "../navbar";
 import Search from "../search";
 import Chat from "../chat";
+import Menu from "../menu";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isOpenChat, setIsOpenChat] = useState(false);
   const ref = useRef(null);
+  const navigationData = [
+    {
+      id: "1",
+      label: "MODELS",
+      links: [
+        {
+          id: "11",
+          label: "TEMERARIO",
+        },
+        {
+          id: "12",
+          label: "REVUELTO",
+        },
+
+        {
+          id: "13",
+          label: "URUS",
+        },
+        {
+          id: "14",
+          label: "HURACÁN",
+        },
+      ],
+    },
+    {
+      id: "2",
+      label: "BEYOND",
+    },
+    {
+      id: "3",
+      label: "OWNERSHIP",
+    },
+    {
+      id: "4",
+      label: "MOTORSPORT",
+    },
+    {
+      id: "5",
+      label: "DEALERSHIPS",
+    },
+    {
+      id: "6",
+      label: "MUSUM",
+    },
+    {
+      id: "66",
+      label: "STORE",
+    },
+    {
+      id: "7",
+      label: "CUSTOMIZATION",
+    },
+    {
+      id: "77",
+      label: "ACCESSORIES",
+    },
+    {
+      id: "8",
+      label: "FINANCIAL SERVICES",
+    },
+    {
+      id: "9",
+      label: "WARRANTY EXTENSION",
+    },
+    {
+      id: "10",
+      label: "DESIGN",
+    },
+    {
+      id: "11",
+      label: "INNOVATION & EXCELLENCE",
+    },
+    {
+      id: "12",
+      label: "SUSTAINABILITY",
+    },
+    {
+      id: "13",
+      label: "HISTORY",
+    },
+    {
+      id: "14",
+      label: "DIRVING PROGRAMS",
+    },
+    {
+      id: "15",
+      label: "LOUNGE",
+    },
+    {
+      id: "16",
+      label: "CLUB",
+    },
+    {
+      id: "17",
+      label: "NEWS",
+    },
+    {
+      id: "18",
+      label: "PODCAST",
+    },
+  ];
 
   function handleOpen() {
     setIsOpenSearch(false);
@@ -36,7 +138,7 @@ export default function Header() {
           alt="Lamborghini Icon"
           className="w-11 h-11 lg:w-[61px] lg:h-[61px] lg:mr-5"
         />
-        <Navbar />
+        <Navbar navigationData={navigationData} />
         <div className="w-[150px] h-fit flex justify-between items-center">
           <button
             onClick={handleOpenChat}
@@ -80,7 +182,7 @@ export default function Header() {
         </div>
       </div>
       <Chat isOpenChat={isOpenChat} handleOpenChat={handleOpenChat} />
-      <Navbar isOpen={isOpen} />
+      <Menu navigationData={navigationData} isOpen={isOpen} />
       <Search isOpenSearch={isOpenSearch} handleOpenSearch={handleOpenSearch} />
     </header>
   );
