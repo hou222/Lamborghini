@@ -4,6 +4,8 @@ import { PiHexagonFill, PiHexagonThin } from "react-icons/pi";
 
 type Props = {
   size: keyof typeof textS;
+  title?: string;
+  text?: string;
 };
 
 const textS = {
@@ -11,7 +13,7 @@ const textS = {
     "  text-black text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[75px] leading-none  w-fit",
   big: "text-white text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[110px] leading-none w-fit",
 };
-export default function TextAnimation({ size }: Props) {
+export default function TextAnimation({ size, title, text }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -24,7 +26,7 @@ export default function TextAnimation({ size }: Props) {
           size === "small" ? "text-black" : "text-white"
         } text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
       >
-        {"READY TO GO BEYOND ?"}
+        {title ? title : "READY TO GO BEYOND ?"}
       </motion.p>
       <motion.p
         initial="hidden"
@@ -36,7 +38,7 @@ export default function TextAnimation({ size }: Props) {
         }}
         className={textS[size]}
       >
-        FAST FORWORLD
+        {text ? text : "FAST FORWORLD"}
       </motion.p>
 
       {isHovered ? (
