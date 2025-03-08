@@ -2,7 +2,12 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "hexa-black": "url('/src/assets/rightBigBlack.png')",
+        "hexa-white": "url('/src/assets/rightBigWhite.png')",
+      },
+    },
     screens: {
       ss: "500px",
       sm: "600px",

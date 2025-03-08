@@ -1,15 +1,52 @@
-import hexa from "../../assets/Hexagon.png";
 import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(480P).mp4";
-import { useState } from "react";
-import { PiHexagonFill, PiHexagonThin } from "react-icons/pi";
-import { motion } from "motion/react";
+import temeriario from "../../assets/Temerario.webp";
+import huracan from "../../assets/huracan.png";
+import { useEffect, useState } from "react";
+import TextAnimation from "../../shared/TextAnimation";
 
 export default function Home() {
-  const [select, setSelect] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [select, setSelect] = useState<boolean>(false);
+  const [car, setCar] = useState<string>(temeriario);
+
+  /* const hoverEff =
+    " hover:cursor-pointer hover:border-b-2 border-black hover:scale-x-100 transition duration-500 origin-left "; */
+
+  const hoverEff =
+    "relative hover:cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1.5px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-left after:bottom-[-1px]";
+  const selectEff =
+    "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1.5px] after:bg-black after:w-full after:scale-x-0 after:scale-x-100 after:transition after:duration-500 after:origin-left after:bottom-[-13px]";
+
+  const cars = [
+    {
+      id: 1,
+      name: "Temerario",
+      image: temeriario,
+      title: "CONFIGURATOR",
+      text: "CREATE YOUR TEMERARIO",
+    },
+    {
+      id: 2,
+      name: "Huracan",
+      image: huracan,
+      title: "CONFIGURATOR",
+      text: "CREATE YOUR TEMERARIO",
+    },
+    {
+      id: 3,
+      name: "Aventador",
+      image: huracan,
+      title: "CONFIGURATOR",
+      text: "CREATE YOUR TEMERARIO",
+    },
+  ];
+
+  useEffect(() => {
+    //window.location.reload();
+  }, [select]);
   function handleSelect(val: boolean) {
     setSelect(val);
   }
+
   return (
     <>
       <div className="w-full h-screen ">
@@ -21,40 +58,8 @@ export default function Home() {
         >
           <source src={mp4} type="video/mp4" />
         </video>
-        <div className="absolute top-0 z-10  w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
-          <motion.p className="text-white text-xl  lg:text-2xl lg:font-semibold xl:text-3xl ">
-            READY TO GO BEYOND ?
-          </motion.p>
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            transition={{ duration: 0.8, delay: 0.7 }}
-            variants={{
-              hidden: { opacity: 0, x: -900 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            className="text-white text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[110px] leading-none "
-          >
-            FAST FORWORLD
-          </motion.p>
-
-          {isHovered ? (
-            <PiHexagonFill
-              color="white "
-              className={`w-[80px] h-[80px] cursor-pointer transition-all  ${
-                isHovered ? "duration-500" : "hidden"
-              }`}
-              onMouseLeave={() => setIsHovered(false)}
-            />
-          ) : (
-            <PiHexagonThin
-              color="white"
-              className={`w-[80px] h-[80px] cursor-pointer transition-all duration-500${
-                isHovered ? "hidden duration-500" : ""
-              }`}
-              onMouseEnter={() => setIsHovered(true)}
-            />
-          )}
+        <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
+          <TextAnimation size={"big"} />
 
           {/* <img src={hexa} alt="hexagon" /> */}
           <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
@@ -82,36 +87,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-10">
-        <div className="bg-slate-300">
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
+      <div className="w-full h-screen bg-white flex">
+        <div className="w-2/5   flex flex-col gap-10 items-start justify-center pl-24">
+          <TextAnimation size="small" />
+          //
         </div>
-        <div className="bg-red-200">
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-        </div>
-        <div className="bg-blue-200">
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
-          <p>lkjljljlj</p>
+        <div className="w-3/5  flex items-end">
+          <img src={car} alt="car" />
+          {/* <img src={huracan} alt="car" /> */}
         </div>
       </div>
     </>

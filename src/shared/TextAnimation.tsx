@@ -1,0 +1,61 @@
+import { motion } from "motion/react";
+import { useState } from "react";
+import { PiHexagonFill, PiHexagonThin } from "react-icons/pi";
+
+type Props = {
+  size: keyof typeof textS;
+};
+
+const textS = {
+  small:
+    "  text-black text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[75px] leading-none  w-fit",
+  big: "text-white text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[110px] leading-none w-fit",
+};
+export default function TextAnimation({ size }: Props) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div>
+      <motion.p
+        initial={{ width: 0, opacity: 0.5 }}
+        animate={{ width: "100%", opacity: 1 }}
+        transition={{ duration: 2.3, ease: "easeInOut", delay: 0.7 }}
+        className={`${
+          size === "small" ? "text-black" : "text-white"
+        } text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
+      >
+        {"READY TO GO BEYOND ?"}
+      </motion.p>
+      <motion.p
+        initial="hidden"
+        whileInView="visible"
+        transition={{ duration: 0.8, delay: 0.7 }}
+        variants={{
+          hidden: { opacity: 0, x: -400 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        className={textS[size]}
+      >
+        FAST FORWORLD
+      </motion.p>
+
+      {isHovered ? (
+        <PiHexagonFill
+          color="white "
+          className={`w-[80px] h-[80px] bg-hexa-black bg-no-repeat bg-center cursor-pointer transition-all flex justify-center items-center ${
+            isHovered ? "duration-500" : "hidden"
+          }`}
+          onMouseLeave={() => setIsHovered(false)}
+        ></PiHexagonFill>
+      ) : (
+        <PiHexagonThin
+          color="white"
+          className={`w-[80px] h-[80px] bg-hexa-white bg-no-repeat bg-center cursor-pointer transition-all duration-500${
+            isHovered ? "hidden duration-500" : ""
+          }`}
+          onMouseEnter={() => setIsHovered(true)}
+        ></PiHexagonThin>
+      )}
+    </div>
+  );
+}
