@@ -6,37 +6,51 @@ type Props = {
   size: keyof typeof textS;
   title?: string;
   text?: string;
+  color: string;
+  shouldAnimate: boolean;
 };
 
 const textS = {
   small:
-    "  text-black text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[75px] leading-none  w-fit",
-  big: "text-white text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[110px] leading-none w-fit",
+    "   text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[75px] leading-none  w-fit",
+  big: " text-[40px] font-bold mb-4 lg:text-[80px] xl:text-[110px] leading-none w-fit",
 };
-export default function TextAnimation({ size, title, text }: Props) {
+
+export default function TextAnimation({
+  size,
+  title,
+  text,
+  color,
+  shouldAnimate,
+}: Props) {
   const [isHovered, setIsHovered] = useState(false);
+  const initialProps = shouldAnimate
+    ? { width: 0, opacity: 0.5 }
+    : { width: "100%", opacity: 1 };
+
+  const animateProps = shouldAnimate
+    ? { width: "100%", opacity: 1 }
+    : { width: "100%", opacity: 1 };
 
   return (
     <div>
       <motion.p
-        initial={{ width: 0, opacity: 0.5 }}
-        animate={{ width: "100%", opacity: 1 }}
+        initial={initialProps}
+        animate={animateProps}
         transition={{ duration: 2.3, ease: "easeInOut", delay: 0.7 }}
-        className={`${
-          size === "small" ? "text-black" : "text-white"
-        } text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
+        className={`text-${color} text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
       >
         {title ? title : "READY TO GO BEYOND ?"}
       </motion.p>
       <motion.p
-        initial="hidden"
-        whileInView="visible"
+        initial={shouldAnimate ? `hidden` : "visible"}
+        whileInView={shouldAnimate ? "visible" : "visble"}
         transition={{ duration: 0.8, delay: 0.7 }}
         variants={{
           hidden: { opacity: 0, x: -400 },
           visible: { opacity: 1, x: 0 },
         }}
-        className={textS[size]}
+        className={`${textS[size]} text-${color}`}
       >
         {text ? text : "FAST FORWORLD"}
       </motion.p>

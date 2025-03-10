@@ -6,6 +6,10 @@ export default {
       backgroundImage: {
         "hexa-black": "url('/src/assets/rightBigBlack.png')",
         "hexa-white": "url('/src/assets/rightBigWhite.png')",
+        "lambo-1": "url('/src/assets/Lambo1.jpg')",
+      },
+      content: {
+        temerario: "url('/src/assets/TEMERARIO.png')",
       },
     },
     screens: {
@@ -17,5 +21,13 @@ export default {
       xl: "1365px",
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".h-screen-minus-90": {
+          height: "calc(100vh - 90px)",
+        },
+      });
+    },
+  ],
 };

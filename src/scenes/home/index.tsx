@@ -1,6 +1,8 @@
 import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(480P).mp4";
 import temeriario from "../../assets/Temerario.webp";
 import huracan from "../../assets/huracan.png";
+import revuelto from "../../assets/revuelto.webp";
+
 import { useEffect, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
 
@@ -19,18 +21,18 @@ const cars = [
     name: "Huracan",
     image: huracan,
     title: "CONFIGURATOR",
-    text: "CREATE YOUR Huracan",
+    text: "CREATE YOUR HURACAN",
     information:
       "Combined energy consumption: 10,1 kWh/100 Km plus 11,86 l/100km; Combined CO2 emissions: 276 g/km; Combined CO2 efficiency class: G; CO2 class with discharged battery: G; Combined fuel consumption with discharged battery: 17,8 l/100km",
   },
   {
     id: 3,
-    name: "Aventador",
-    image: huracan,
+    name: "Revuelto",
+    image: revuelto,
     title: "CONFIGURATOR",
-    text: "CREATE YOUR Aventador",
+    text: "CREATE YOUR REVUELTO",
     information:
-      "Urus Performante, Urus S, Urus SE: Combined energy consumption: 39,5 kWh/100 Km plus 14,1-2,08 l/100km; Combined CO2 emissions: 320-51,25 g/km; Combined CO2 efficiency class: B-G; Combined fuel consumption with discharged battery: 12,9 l/100km; CO2 class with discharged battery: G",
+      "Combined energy consumption: 10,1 kWh/100 Km plus 11,86 l/100km; Combined CO2 emissions: 276 g/km; Combined CO2 efficiency class: G; CO2 class with discharged battery: G; Combined fuel consumption with discharged battery: 17,8 l/100km",
   },
 ];
 
@@ -65,7 +67,7 @@ export default function Home() {
           <source src={mp4} type="video/mp4" />
         </video>
         <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
-          <TextAnimation size={"big"} />
+          <TextAnimation size={"big"} color="white" shouldAnimate={true} />
 
           {/* <img src={hexa} alt="hexagon" /> */}
           <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
@@ -93,11 +95,17 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full h-screen py-5">
+      <div className="flex flex-col w-full h-screen py-5 ">
         <p className="text-center px-20 font-light">{car.information}</p>
-        <div className="  flex items-center">
+        <div className=" relative flex items-center before:absolute before:content-temerario before:z-[-1] before: before:bg-red-500">
           <div className="w-2/5 h-fit flex flex-col gap-10 items-start justify-center pl-24">
-            <TextAnimation size="small" title={car.title} text={car.text} />
+            <TextAnimation
+              size="small"
+              title={car.title}
+              text={car.text}
+              color="black"
+              shouldAnimate={true}
+            />
             <div className=" w-fit  text-black flex text-xl border-b font-light  ">
               {cars.map((item: any) => (
                 <button
@@ -119,20 +127,19 @@ export default function Home() {
         </div>
         <p className="text-center px-20 font-light">{car.information}</p>
       </div>
-      <div className="bg-gray-300">
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
-        <p>jojkljkljkljkljlkjlkjlkjjkljkljjllkjklj</p>
+      <div
+        className=" h-screen-minus-90 w-full bg-lambo-1 bg-no-repeat bg-right 
+      "
+      >
+        <div className="max-w-[750px] h-full flex flex-col gap-10 items-start justify-center pl-24">
+          <TextAnimation
+            title="DEALER LOCATOR"
+            text="FIND YOUR COUNTRY DEALER"
+            size="small"
+            color="white"
+            shouldAnimate={false}
+          />
+        </div>
       </div>
     </>
   );
