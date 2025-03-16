@@ -9,5 +9,5 @@ export interface NavigationType {
 
 export interface SocialType {
   name: string;
-  icon: string;
+  icon: { b: string; w: string };
 }

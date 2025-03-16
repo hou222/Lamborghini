@@ -10,6 +10,17 @@ import Youku from "../../assets/youku.png";
 import Wechat from "../../assets/wechat.png";
 import Discord from "../../assets/discord.png";
 import LeftWhite from "../../assets/LeftWhite.png";
+import InstagramW from "../../assets/instagramW.png";
+import ThreadsW from "../../assets/threadsW.png";
+import FacebookW from "../../assets/facebookW.png";
+import YoutubeW from "../../assets/youtubeW.png";
+import TwitterW from "../../assets/twitterW.png";
+import TiktokW from "../../assets/tik-tokW.png";
+import LinkedinW from "../../assets/linkedinW.png";
+import WeiboW from "../../assets/weiboW.png";
+import YoukuW from "../../assets/youkuW.png";
+import WechatW from "../../assets/wechatW.png";
+import DiscordW from "../../assets/discordW.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { AnimatePresence, motion, Variants } from "motion/react";
 import { FaChevronRight } from "react-icons/fa";
@@ -44,17 +55,17 @@ export default function Menu({
     "RUSSIAN",
   ];
   const social: SocialType[] = [
-    { name: "INSTAGRAM", icon: Instagram },
-    { name: "THREADS", icon: Threads },
-    { name: "FACEBOOK", icon: Facebook },
-    { name: "YOUTUBE", icon: Youtube },
-    { name: "TWITTER", icon: Twitter },
-    { name: "TIKTOK", icon: Tiktok },
-    { name: "LINKEDIN", icon: Linkedin },
-    { name: "WEIBO", icon: Weibo },
-    { name: "YOUKU", icon: Youku },
-    { name: "WECHAT", icon: Wechat },
-    { name: "DISCORD", icon: Discord },
+    { name: "INSTAGRAM", icon: { b: Instagram, w: InstagramW } },
+    { name: "THREADS", icon: { b: Threads, w: ThreadsW } },
+    { name: "FACEBOOK", icon: { b: Facebook, w: FacebookW } },
+    { name: "YOUTUBE", icon: { b: Youtube, w: YoutubeW } },
+    { name: "TWITTER", icon: { b: Twitter, w: TwitterW } },
+    { name: "TIKTOK", icon: { b: Tiktok, w: TiktokW } },
+    { name: "LINKEDIN", icon: { b: Linkedin, w: LinkedinW } },
+    { name: "WEIBO", icon: { b: Weibo, w: WeiboW } },
+    { name: "YOUKU", icon: { b: Youku, w: YoukuW } },
+    { name: "WECHAT", icon: { b: Wechat, w: WechatW } },
+    { name: "DISCORD", icon: { b: Discord, w: DiscordW } },
   ];
 
   const variants: Variants = {
@@ -255,11 +266,11 @@ export default function Menu({
               </div>
               <div>
                 <div className="text-[#666]">SOCIAL</div>
-                <ul className="grid grid-cols-6 gap-4  pt-4 pr-40 bg-slate-600">
+                <ul className="grid grid-cols-6 gap-4  pt-4 pr-40 ">
                   {social.map((item, index) => (
                     <li key={index}>
                       <img
-                        src={item.icon}
+                        src={item.icon.w}
                         alt={item.name}
                         className="w-[25px] h-[25px]"
                       />
@@ -298,7 +309,7 @@ export default function Menu({
             {social.map((social) => (
               <li className="flex gap-3 items-center " key={social.name}>
                 <img
-                  src={social.icon}
+                  src={social.icon.b}
                   alt="icon"
                   className="w-[18px] h-[18px] "
                 />
