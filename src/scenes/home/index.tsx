@@ -2,7 +2,8 @@ import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(4
 import temeriario from "../../assets/Temerario1.png";
 import huracan from "../../assets/huracan.png";
 import revuelto from "../../assets/revuelto.png";
-
+import lambo1 from "../../assets/Lamobo-mountain.png";
+import lambo2 from "../../assets/lambo2.png";
 import { useEffect, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
 import { caption, video } from "motion/react-client";
@@ -191,6 +192,42 @@ export default function Home() {
             color="white"
             shouldAnimate={false}
           />
+        </div>
+      </div>
+      <div>
+        <div className="px-4 pt-20 pb-10 bg-[#F8F8F7] ">
+          <p className="text-[30px] font-semibold">NEWS</p>
+          <div>
+            <p className="text-[45px] leading-none py-6 font-bold ">
+              LAMBORGHINI WORLD
+            </p>
+            <img src={lambo1} alt="lamborghini wallpaper" />
+          </div>
+        </div>
+        <div className="px-4 pt-10 flex flex-col gap-4">
+          <p className="font-semibold text-lg ">12 MARCH 2025</p>
+          <p className="bg-[#F8F8F7] w-fit px-2">EVENTS</p>
+          <p className="font-bold text-3xl ">
+            A LAMBORGHINI GATEWAY TO COURCHEVEL
+          </p>
+          <p>
+            Combined energy consumption: 10,1 kWh/100 Km plus 11,86 l/100km;
+            Combined CO2 emissions: 276 g/km; Combined CO2 efficiency class: G;
+            CO2 class with discharged battery: G; Combined fuel consumption with
+            discharged battery: 17,8 l/100km
+          </p>
+          <div className="flex flex-col gap-4 py-14">
+            <img src={lambo2} alt="lambo" />
+
+            <p className="font-semibold text-lg ">6 March 2025</p>
+
+            <p className="font-bold text-3xl ">The new V8 Biturbo</p>
+            <p>
+              The vehicle is not yet offered for sale and is therefore not
+              subject to Directive 1999/94/EC. The fuel consumption and
+              emissions data is in the type approval stage
+            </p>
+          </div>
         </div>
       </div>
     </>
