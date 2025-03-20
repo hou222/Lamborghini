@@ -180,7 +180,10 @@ export default function Home() {
         className=" h-screen-minus-90 w-full bg-lambo-1 bg-no-repeat bg-right 
       "
       >
-        <div className="max-w-[750px] h-full flex flex-col gap-10 items-start justify-center pl-24">
+        <div
+          className="max-w-[750px] h-full flex flex-col gap-10 items-start justify-center  
+        px-4 md:px-24  xl:px-28"
+        >
           <TextAnimation
             title="DEALER LOCATOR"
             text="FIND YOUR COUNTRY DEALER"
