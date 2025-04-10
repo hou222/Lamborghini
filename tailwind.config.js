@@ -20,6 +20,7 @@ export default {
       ll: "980px",
       lg: "1024px",
       xl: "1365px",
+      "2xl": "1536px",
     },
   },
   plugins: [
