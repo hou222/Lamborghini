@@ -24,6 +24,8 @@ export default function TextAnimation({
   shouldAnimate,
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
   const initialProps = shouldAnimate
     ? { width: 0, opacity: 0.5 }
     : { width: "100%", opacity: 1 };
@@ -43,13 +45,14 @@ export default function TextAnimation({
         {title ? title : "READY TO GO BEYOND ?"}
       </motion.p>
       <motion.p
-        initial={shouldAnimate ? `hidden` : "visible"}
-        whileInView={shouldAnimate ? "visible" : "visble"}
+        initial={shouldAnimate && !hasAnimated ? `hidden` : "visible"}
+        whileInView={shouldAnimate && !hasAnimated ? "visible" : "visble"}
         transition={{ duration: 0.8, delay: 0.7 }}
         variants={{
-          hidden: { opacity: 0, x: -400 },
+          hidden: { opacity: 0, x: -300 },
           visible: { opacity: 1, x: 0 },
         }}
+        onViewportEnter={() => setHasAnimated(true)}
         className={`${textS[size]} text-${color}`}
       >
         {text ? text : "FAST FORWORLD"}

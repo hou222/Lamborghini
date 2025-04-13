@@ -10,6 +10,8 @@ import { caption, video } from "motion/react-client";
 import "react-slideshow-image/dist/styles.css";
 import Slider from "react-slick";
 import { Fade } from "react-slideshow-image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const cars = [
   {
@@ -44,21 +46,6 @@ const cars = [
   },
 ];
 
-const fadeImages = [
-  {
-    url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    caption: "First Slide",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
-    caption: "Second Slide",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    caption: "Third Slide",
-  },
-];
-
 export default function Home() {
   const [select, setSelect] = useState<boolean>(false);
   const [car, setCar] = useState(cars[0]);
@@ -76,7 +63,7 @@ export default function Home() {
   const selectEff =
     "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1.5px] after:bg-black after:w-full after:scale-x-0 after:scale-x-100 after:transition after:duration-500 after:origin-left after:bottom-[-13px]";
 
-  const settings = {
+  /* const settings = {
     dots: true,
     fade: false,
     infinite: true,
@@ -84,6 +71,16 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     waitForAnimate: false,
+  }; */
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+    arrows: false,
   };
 
   useEffect(() => {
@@ -176,6 +173,29 @@ export default function Home() {
           </div>
         </div>
         <p className="text-center px-20 font-light">{car.information}</p>
+      </div>
+      <div className="w-full py-7  lg:hidden">
+        <p className="text-[30px] font-semibold px-4">MODELS</p>
+        <Slider {...settings}>
+          {cars.map((car) => (
+            <div
+              style={{ width: 300 }}
+              className="h-[200px]  bg-gradient-to-t from-white via-gray-300 to-white"
+            >
+              <img src={car.image} alt={car.name} className="shadow-xl/20" />
+            </div>
+          ))}
+        </Slider>
+        <div>
+          <p>temerario</p>
+          <p>You can't hide who you are</p>
+          <button className=" px-16 py-4 border border-[#c2c2c2]">
+            READ MORE
+          </button>
+          <button className=" px-16 py-4 border border-[#c2c2c2]">
+            READ MORE
+          </button>
+        </div>
       </div>
       <div
         className=" h-screen-minus-90 w-full bg-lambo-1 bg-no-repeat bg-right 
