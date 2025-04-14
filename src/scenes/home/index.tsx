@@ -1,17 +1,18 @@
 import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(480P).mp4";
+import mp42 from "../../assets/Lamborghini2.mp4";
 import temeriario from "../../assets/Temerario1.png";
 import huracan from "../../assets/huracan.png";
 import revuelto from "../../assets/revuelto.png";
 import lambo1 from "../../assets/Lamobo-mountain.png";
 import lambo2 from "../../assets/lambo2.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
-import { caption, video } from "motion/react-client";
 import "react-slideshow-image/dist/styles.css";
 import Slider from "react-slick";
-import { Fade } from "react-slideshow-image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Fade } from "react-slideshow-image";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const cars = [
   {
@@ -47,11 +48,15 @@ const cars = [
 ];
 
 export default function Home() {
-  const [select, setSelect] = useState<boolean>(false);
-  const [car, setCar] = useState(cars[0]);
+  const [select, setSelect] = useState<number>(0);
+  const [slideCar, setSlideCar] = useState<number>(0);
+  const [slideVideo, setSlideVideo] = useState<number>(0);
 
+  const [car, setCar] = useState(cars[0]);
+  const ref = useRef();
   const videos = [
-    { video: mp4, caption: 1 },
+    { video: mp4, caption: 0 },
+    { video: mp42, caption: 1 },
     { video: mp4, caption: 2 },
   ];
 
@@ -63,16 +68,6 @@ export default function Home() {
   const selectEff =
     "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1.5px] after:bg-black after:w-full after:scale-x-0 after:scale-x-100 after:transition after:duration-500 after:origin-left after:bottom-[-13px]";
 
-  /* const settings = {
-    dots: true,
-    fade: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    waitForAnimate: false,
-  }; */
-
   const settings = {
     dots: false,
     infinite: true,
@@ -81,28 +76,132 @@ export default function Home() {
     slidesToScroll: 1,
     variableWidth: true,
     arrows: false,
+    afterChange: (current: number) => {
+      setSlideCar(current);
+    },
+  };
+  const setting = {
+    dots: true,
+    fade: true,
+    arrows: true,
+    infinite: true,
+    speed: 900,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+
+    beforeChange: (current: number) => {
+      console.log(current);
+      setSlideVideo(current);
+    },
   };
 
   useEffect(() => {
     //window.location.reload();
-  }, [select]);
-  function handleSelect(val: boolean) {
+  }, []);
+
+  function handleSelect(val: number) {
     setSelect(val);
+  }
+
+  function moveNext(val: number) {
+    handleSelect(val);
+
+    if (select < val) ref.current.goNext();
+  }
+
+  function movePrev(val: number) {
+    handleSelect(val);
+    if (select > val) ref.current.goBack();
   }
 
   return (
     <>
-      {/* <div className="slide-container">
-        <Fade>
-          {fadeImages.map((fadeImage, index) => (
-            <div key={index}>
-              <img style={{ width: "100%" }} src={fadeImage.url} />
-              <h2>{fadeImage.caption}</h2>
+      {/* <Slider {...setting}>
+        {videos.map((video, index) => (
+          <video
+            key={index}
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            className={` w-full h-screen  bg-cover bg-center object-cover relative `}
+          >
+            <source src={video.video} type="video/mp4" />
+          </video>
+        ))}
+      </Slider> */}
+      <Fade arrows={false} ref={ref}>
+        {videos.map((video, index) => (
+          <div key={video.caption}>
+            <video
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              className="w-full h-screen z-10 bg-cover object-cover relative "
+            >
+              <source src={video.video} type="video/mp4" />
+            </video>
+            <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
+              <TextAnimation size={"big"} color="white" shouldAnimate={true} />
+              <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
+                {videos.map((_, index) => (
+                  <button
+                    className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
+                      select === index
+                        ? "after:h-[3px] after:bg-white"
+                        : "after:h-[1px] after:bg-[#ffffff7f]"
+                    }`}
+                    onClick={() =>
+                      index > select ? moveNext(index) : movePrev(index)
+                    }
+                  >
+                    <span></span>
+                  </button>
+                ))}
+              </div>
+
+              {/* <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
+                <button
+                  className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
+                    select
+                      ? "after:h-[3px] after:bg-white"
+                      : "after:h-[1px] after:bg-[#ffffff7f]"
+                  }`}
+                  onClick={() => movePrev(true)}
+                >
+                  <span></span>
+                </button>
+
+                <button
+                  className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200  ${
+                    !select
+                      ? "after:h-[3px] after:bg-white"
+                      : "after:h-[1px] after:bg-[#ffffff7f]"
+                  }`}
+                  onClick={() => moveNext(false)}
+                >
+                  <span></span>
+                </button>
+              </div> */}
             </div>
-          ))}
-        </Fade>
-      </div> */}
-      <div className="w-full h-screen ">
+          </div>
+        ))}
+      </Fade>
+      {/* <Fade>
+        {videos.map((video, index) => (
+          <video
+            key={index}
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            className={` w-full h-screen  bg-cover bg-center object-cover relative `}
+          >
+            <source src={video.video} type="video/mp4" />
+          </video>
+        ))}
+      </Fade> */}
+      ///////////////////////////////////////////////////////
+      {/* <div className="w-full h-screen ">
         <video
           autoPlay={true}
           loop={true}
@@ -138,7 +237,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="hidden  flex-col w-full h-screen py-5  lg:flex">
         <p className="text-center px-20 font-light">{car.information}</p>
         <div
@@ -176,25 +275,35 @@ export default function Home() {
       </div>
       <div className="w-full py-7  lg:hidden">
         <p className="text-[30px] font-semibold px-4">MODELS</p>
+
         <Slider {...settings}>
           {cars.map((car) => (
             <div
-              style={{ width: 300 }}
-              className="h-[200px]  bg-gradient-to-t from-white via-gray-300 to-white"
+              key={car.id}
+              className="w-[300px] sm:w-[400px] md:w-[530px] h-[200px] sm:h-[300px] md:h-[350px] bg-gradient-to-t from-white via-gray-300 to-white"
             >
-              <img src={car.image} alt={car.name} className="shadow-xl/20" />
+              <img
+                src={car.image}
+                alt={car.name}
+                className="w-[300px] sm:w-[400px] md:w-[530px]"
+              />
             </div>
           ))}
         </Slider>
         <div>
-          <p>temerario</p>
-          <p>You can't hide who you are</p>
-          <button className=" px-16 py-4 border border-[#c2c2c2]">
-            READ MORE
-          </button>
-          <button className=" px-16 py-4 border border-[#c2c2c2]">
-            READ MORE
-          </button>
+          <div className="px-4 flex flex-col items-start gap-2">
+            <p className="text-4xl font-bold">{cars[slideCar].name}</p>
+            <p className="text-lg font-semibold">You can't hide who you are</p>
+            <button className=" px-16 py-2 w-full border border-[#c2c2c2]">
+              EXPLORE THE MODEL
+            </button>
+            <button className=" px-16 py-2 w-full border border-[#c2c2c2]">
+              OPEN CAR CONFIGURATOR
+            </button>
+            <p className="text-center font-light py-2">
+              {cars[slideCar].information}
+            </p>
+          </div>
         </div>
       </div>
       <div
