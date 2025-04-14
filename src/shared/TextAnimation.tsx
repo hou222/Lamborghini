@@ -26,7 +26,6 @@ export default function TextAnimation({
   rerun,
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   const initialProps = shouldAnimate
     ? { width: 0, opacity: 0.5 }
@@ -35,8 +34,6 @@ export default function TextAnimation({
   const animateProps = shouldAnimate
     ? { width: "100%", opacity: 1 }
     : { width: "100%", opacity: 1 };
-
-  console.log(1);
 
   return (
     <div>
@@ -51,8 +48,8 @@ export default function TextAnimation({
       </motion.p>
       <motion.p
         key={`01${rerun}`}
-        initial={shouldAnimate && !hasAnimated ? `hidden` : "visible"}
-        whileInView={shouldAnimate && !hasAnimated ? "visible" : "visble"}
+        initial={shouldAnimate ? `hidden` : "visible"}
+        whileInView={shouldAnimate ? "visible" : "visble"}
         transition={{ duration: 0.8, delay: 0.7 }}
         variants={{
           hidden: { opacity: 0, x: -300 },

@@ -12,8 +12,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Fade, SlideshowRef } from "react-slideshow-image";
+import { CarType } from "../../shared/types";
 
-const cars = [
+const cars: CarType[] = [
   {
     id: 1,
     name: "Temerario",
@@ -51,8 +52,8 @@ export default function Home() {
   const [slideCar, setSlideCar] = useState<number>(0);
   /* const [slideVideo, setSlideVideo] = useState<number>(0); */
 
-  const [car, setCar] = useState(cars[0]);
-  const ref = useRef<SlideshowRef>();
+  const [car, setCar] = useState<CarType>(cars[0]);
+  const ref = useRef<SlideshowRef | null>(null);
   const videos = [
     { video: mp4, caption: 0 },
     { video: mp42, caption: 1 },
@@ -105,19 +106,6 @@ export default function Home() {
 
   return (
     <>
-      {/* <Slider {...setting}>
-        {videos.map((video, index) => (
-          <video
-            key={index}
-            autoPlay={true}
-            loop={true}
-            muted={true}
-            className={` w-full h-screen  bg-cover bg-center object-cover relative `}
-          >
-            <source src={video.video} type="video/mp4" />
-          </video>
-        ))}
-      </Slider> */}
       <div>
         <Fade arrows={false} autoplay={false} ref={ref}>
           {videos.map((video, index) => (
@@ -155,83 +143,9 @@ export default function Home() {
               </button>
             ))}
           </div>
-
-          {/* <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
-                <button
-                  className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
-                    select
-                      ? "after:h-[3px] after:bg-white"
-                      : "after:h-[1px] after:bg-[#ffffff7f]"
-                  }`}
-                  onClick={() => movePrev(true)}
-                >
-                  <span></span>
-                </button>
-
-                <button
-                  className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200  ${
-                    !select
-                      ? "after:h-[3px] after:bg-white"
-                      : "after:h-[1px] after:bg-[#ffffff7f]"
-                  }`}
-                  onClick={() => moveNext(false)}
-                >
-                  <span></span>
-                </button>
-              </div> */}
         </div>
       </div>
-      {/* <Fade>
-        {videos.map((video, index) => (
-          <video
-            key={index}
-            autoPlay={true}
-            loop={true}
-            muted={true}
-            className={` w-full h-screen  bg-cover bg-center object-cover relative `}
-          >
-            <source src={video.video} type="video/mp4" />
-          </video>
-        ))}
-      </Fade> */}
-      ///////////////////////////////////////////////////////
-      {/* <div className="w-full h-screen ">
-        <video
-          autoPlay={true}
-          loop={true}
-          muted={true}
-          className="w-full h-screen z-10 bg-cover object-cover relative "
-        >
-          <source src={mp4} type="video/mp4" />
-        </video>
-        <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
-          <TextAnimation size={"big"} color="white" shouldAnimate={true} />
 
-          <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
-            <button
-              className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
-                select
-                  ? "after:h-[3px] after:bg-white"
-                  : "after:h-[1px] after:bg-[#ffffff7f]"
-              }`}
-              onClick={() => handleSelect(true)}
-            >
-              <span></span>
-            </button>
-
-            <button
-              className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200  ${
-                !select
-                  ? "after:h-[3px] after:bg-white"
-                  : "after:h-[1px] after:bg-[#ffffff7f]"
-              }`}
-              onClick={() => handleSelect(false)}
-            >
-              <span></span>
-            </button>
-          </div>
-        </div>
-      </div> */}
       <div className="hidden  flex-col w-full h-screen py-5  lg:flex">
         <p className="text-center px-20 font-light">{car.information}</p>
         <div
@@ -247,7 +161,7 @@ export default function Home() {
               shouldAnimate={true}
             />
             <div className=" w-fit  text-black flex text-xl border-b font-light  ">
-              {cars.map((item: any) => (
+              {cars.map((item: CarType) => (
                 <button
                   className={` pr-20  py-3 ${hoverEff} ${
                     car.id === item.id ? selectEff : ""

@@ -11,3 +11,13 @@ export interface SocialType {
   name: string;
   icon: { b: string; w: string };
 }
+
+export interface CarType {
+  id: number;
+  name: string;
+  image: string;
+  background: string;
+  title: string;
+  text: string;
+  information: string;
+}
