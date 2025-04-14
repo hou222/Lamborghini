@@ -5,14 +5,13 @@ import huracan from "../../assets/huracan.png";
 import revuelto from "../../assets/revuelto.png";
 import lambo1 from "../../assets/Lamobo-mountain.png";
 import lambo2 from "../../assets/lambo2.png";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
 import "react-slideshow-image/dist/styles.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Fade } from "react-slideshow-image";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Fade, SlideshowRef } from "react-slideshow-image";
 
 const cars = [
   {
@@ -50,14 +49,13 @@ const cars = [
 export default function Home() {
   const [select, setSelect] = useState<number>(0);
   const [slideCar, setSlideCar] = useState<number>(0);
-  const [slideVideo, setSlideVideo] = useState<number>(0);
+  /* const [slideVideo, setSlideVideo] = useState<number>(0); */
 
   const [car, setCar] = useState(cars[0]);
-  const ref = useRef();
+  const ref = useRef<SlideshowRef>();
   const videos = [
     { video: mp4, caption: 0 },
     { video: mp42, caption: 1 },
-    { video: mp4, caption: 2 },
   ];
 
   /* const hoverEff =
@@ -80,7 +78,7 @@ export default function Home() {
       setSlideCar(current);
     },
   };
-  const setting = {
+  /* const setting = {
     dots: true,
     fade: true,
     arrows: true,
@@ -94,25 +92,15 @@ export default function Home() {
       console.log(current);
       setSlideVideo(current);
     },
-  };
+  }; */
 
-  useEffect(() => {
-    //window.location.reload();
-  }, []);
-
-  function handleSelect(val: number) {
+  function handleMoves(val: number) {
+    if (select < val) {
+      ref.current?.goNext();
+    } else if (select > val) {
+      ref.current?.goBack();
+    }
     setSelect(val);
-  }
-
-  function moveNext(val: number) {
-    handleSelect(val);
-
-    if (select < val) ref.current.goNext();
-  }
-
-  function movePrev(val: number) {
-    handleSelect(val);
-    if (select > val) ref.current.goBack();
   }
 
   return (
@@ -130,37 +118,45 @@ export default function Home() {
           </video>
         ))}
       </Slider> */}
-      <Fade arrows={false} ref={ref}>
-        {videos.map((video, index) => (
-          <div key={video.caption}>
+      <div>
+        <Fade arrows={false} autoplay={false} ref={ref}>
+          {videos.map((video, index) => (
             <video
+              key={index}
               autoPlay={true}
-              loop={true}
+              loop={false}
               muted={true}
               className="w-full h-screen z-10 bg-cover object-cover relative "
             >
               <source src={video.video} type="video/mp4" />
             </video>
-            <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
-              <TextAnimation size={"big"} color="white" shouldAnimate={true} />
-              <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
-                {videos.map((_, index) => (
-                  <button
-                    className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
-                      select === index
-                        ? "after:h-[3px] after:bg-white"
-                        : "after:h-[1px] after:bg-[#ffffff7f]"
-                    }`}
-                    onClick={() =>
-                      index > select ? moveNext(index) : movePrev(index)
-                    }
-                  >
-                    <span></span>
-                  </button>
-                ))}
-              </div>
+          ))}
+        </Fade>
 
-              {/* <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
+        <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
+          <TextAnimation
+            rerun={select}
+            size={"big"}
+            color="white"
+            shouldAnimate={true}
+          />
+          <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
+            {videos.map((_, index) => (
+              <button
+                key={index}
+                className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
+                  select === index
+                    ? "after:h-[3px] after:bg-white"
+                    : "after:h-[1px] after:bg-[#ffffff7f]"
+                }`}
+                onClick={() => handleMoves(index)}
+              >
+                <span></span>
+              </button>
+            ))}
+          </div>
+
+          {/* <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
                 <button
                   className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
                     select
@@ -183,10 +179,8 @@ export default function Home() {
                   <span></span>
                 </button>
               </div> */}
-            </div>
-          </div>
-        ))}
-      </Fade>
+        </div>
+      </div>
       {/* <Fade>
         {videos.map((video, index) => (
           <video

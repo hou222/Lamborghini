@@ -8,6 +8,7 @@ type Props = {
   text?: string;
   color: string;
   shouldAnimate: boolean;
+  rerun?: number;
 };
 
 const textS = {
@@ -22,6 +23,7 @@ export default function TextAnimation({
   text,
   color,
   shouldAnimate,
+  rerun,
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -34,9 +36,12 @@ export default function TextAnimation({
     ? { width: "100%", opacity: 1 }
     : { width: "100%", opacity: 1 };
 
+  console.log(1);
+
   return (
     <div>
       <motion.p
+        key={`10${rerun}`}
         initial={initialProps}
         animate={animateProps}
         transition={{ duration: 2.3, ease: "easeInOut", delay: 0.7 }}
@@ -45,6 +50,7 @@ export default function TextAnimation({
         {title ? title : "READY TO GO BEYOND ?"}
       </motion.p>
       <motion.p
+        key={`01${rerun}`}
         initial={shouldAnimate && !hasAnimated ? `hidden` : "visible"}
         whileInView={shouldAnimate && !hasAnimated ? "visible" : "visble"}
         transition={{ duration: 0.8, delay: 0.7 }}
@@ -52,7 +58,7 @@ export default function TextAnimation({
           hidden: { opacity: 0, x: -300 },
           visible: { opacity: 1, x: 0 },
         }}
-        onViewportEnter={() => setHasAnimated(true)}
+        viewport={{ once: true }}
         className={`${textS[size]} text-${color}`}
       >
         {text ? text : "FAST FORWORLD"}
