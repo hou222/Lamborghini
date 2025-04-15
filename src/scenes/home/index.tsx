@@ -1,18 +1,18 @@
-import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(480P).mp4";
-import mp42 from "../../assets/Lamborghini2.mp4";
 import temeriario from "../../assets/Temerario1.png";
 import huracan from "../../assets/huracan.png";
 import revuelto from "../../assets/revuelto.png";
 import lambo1 from "../../assets/Lamobo-mountain.png";
 import lambo2 from "../../assets/lambo2.png";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
 import "react-slideshow-image/dist/styles.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Fade, SlideshowRef } from "react-slideshow-image";
+
 import { CarType } from "../../shared/types";
+import VideoSlide from "./VideoSlide";
+import CarModels from "./CarModels";
 
 const cars: CarType[] = [
   {
@@ -48,24 +48,11 @@ const cars: CarType[] = [
 ];
 
 export default function Home() {
-  const [select, setSelect] = useState<number>(0);
   const [slideCar, setSlideCar] = useState<number>(0);
   /* const [slideVideo, setSlideVideo] = useState<number>(0); */
 
-  const [car, setCar] = useState<CarType>(cars[0]);
-  const ref = useRef<SlideshowRef | null>(null);
-  const videos = [
-    { video: mp4, caption: 0 },
-    { video: mp42, caption: 1 },
-  ];
-
   /* const hoverEff =
     " hover:cursor-pointer hover:border-b-2 border-black hover:scale-x-100 transition duration-500 origin-left "; */
-
-  const hoverEff =
-    "relative hover:cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1.5px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-left after:bottom-[-1px]";
-  const selectEff =
-    "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[1.5px] after:bg-black after:w-full after:scale-x-0 after:scale-x-100 after:transition after:duration-500 after:origin-left after:bottom-[-13px]";
 
   const settings = {
     dots: false,
@@ -79,108 +66,11 @@ export default function Home() {
       setSlideCar(current);
     },
   };
-  /* const setting = {
-    dots: true,
-    fade: true,
-    arrows: true,
-    infinite: true,
-    speed: 900,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    variableWidth: true,
-
-    beforeChange: (current: number) => {
-      console.log(current);
-      setSlideVideo(current);
-    },
-  }; */
-
-  function handleMoves(val: number) {
-    if (select < val) {
-      ref.current?.goNext();
-    } else if (select > val) {
-      ref.current?.goBack();
-    }
-    setSelect(val);
-  }
 
   return (
     <>
-      <div>
-        <Fade arrows={false} autoplay={false} ref={ref}>
-          {videos.map((video, index) => (
-            <video
-              key={index}
-              autoPlay={true}
-              loop={false}
-              muted={true}
-              className="w-full h-screen z-10 bg-cover object-cover relative "
-            >
-              <source src={video.video} type="video/mp4" />
-            </video>
-          ))}
-        </Fade>
-
-        <div className="absolute  top-0 z-10 w-full  px-4 md:px-24 h-full pt-40 xl:pt-56 xl:px-28">
-          <TextAnimation
-            rerun={select}
-            size={"big"}
-            color="white"
-            shouldAnimate={true}
-          />
-          <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
-            {videos.map((_, index) => (
-              <button
-                key={index}
-                className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
-                  select === index
-                    ? "after:h-[3px] after:bg-white"
-                    : "after:h-[1px] after:bg-[#ffffff7f]"
-                }`}
-                onClick={() => handleMoves(index)}
-              >
-                <span></span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="hidden  flex-col w-full h-screen py-5  lg:flex">
-        <p className="text-center px-20 font-light">{car.information}</p>
-        <div
-          className={`  flex items-center  ${car.background}  bg-no-repeat bg-cover bg-[center_bottom_-7rem]  bg-z-[-1]  `}
-        >
-          {/* <div className=" relative flex items-center before:absolute  before:w-full before:h-full   before:content-temerario before:z-[-1]  before:bg-red-500"> */}
-          <div className="w-2/5 h-fit flex flex-col gap-10 items-start justify-center pl-24">
-            <TextAnimation
-              size="small"
-              title={car.title}
-              text={car.text}
-              color="black"
-              shouldAnimate={true}
-            />
-            <div className=" w-fit  text-black flex text-xl border-b font-light  ">
-              {cars.map((item: CarType) => (
-                <button
-                  className={` pr-20  py-3 ${hoverEff} ${
-                    car.id === item.id ? selectEff : ""
-                  }`}
-                  key={item.name}
-                  onClick={() => setCar(item)}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="w-3/5 flex items-end ">
-            <img src={car.image} alt="car" className="h-[560px]" />
-            {/* <img src={huracan} alt="car" /> */}
-          </div>
-        </div>
-        <p className="text-center px-20 font-light">{car.information}</p>
-      </div>
+      <VideoSlide />
+      <CarModels cars={cars} />
       <div className="w-full py-7  lg:hidden">
         <p className="text-[30px] font-semibold px-4">MODELS</p>
 

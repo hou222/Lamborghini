@@ -21,6 +21,7 @@ export default function TextAnimation({
   size,
   title,
   text,
+
   color,
   shouldAnimate,
   rerun,
@@ -44,7 +45,7 @@ export default function TextAnimation({
         transition={{ duration: 2.3, ease: "easeInOut", delay: 0.7 }}
         className={`text-${color} text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
       >
-        {title ? title : "READY TO GO BEYOND ?"}
+        {title}
       </motion.p>
       <motion.p
         key={`01${rerun}`}
@@ -56,9 +57,9 @@ export default function TextAnimation({
           visible: { opacity: 1, x: 0 },
         }}
         viewport={{ once: true }}
-        className={`${textS[size]} text-${color}`}
+        className={`${textS[size]} text-${color} `}
       >
-        {text ? text : "FAST FORWORLD"}
+        {text}
       </motion.p>
 
       {isHovered ? (
