@@ -25,7 +25,8 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { AnimatePresence, motion, Variants } from "motion/react";
 import { FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
-import Hexa from "../../assets/hexagon.png";
+import Hexa from "../../assets/Hexagon.png";
+
 import { NavigationType, SocialType } from "../../shared/types";
 import BottomMenuButton from "../../shared/BottomMenuButton";
 
