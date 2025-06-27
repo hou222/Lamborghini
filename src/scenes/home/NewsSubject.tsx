@@ -4,9 +4,9 @@ export default function NewsSubject() {
   return (
     <div>
       <div className="px-4 pt-28 pb-10 bg-[#F8F8F7] lg:px-20 2xl:px-36">
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <div className="bg-black text-white">ljkljkl / kljljklj / kkljkl</div>
-        </div>
+        </div> */}
         <p className="text-[20px]  lg:font-semibold lg:text-[34px]">NEWS</p>
         <div>
           <p className="text-[30px] leading-none py-6 font-bold lg:text-[80px] 2xl:text-[110px]">

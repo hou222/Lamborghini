@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { PiHexagonFill, PiHexagonThin } from "react-icons/pi";
+import { useNavigate } from "react-router";
 
 type Props = {
   size: keyof typeof textS;
@@ -28,6 +29,7 @@ export default function TextAnimation({
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
+  const navigate = useNavigate();
   const initialProps = shouldAnimate
     ? { width: 0, opacity: 0.5 }
     : { width: "100%", opacity: 1 };
@@ -63,13 +65,19 @@ export default function TextAnimation({
       </motion.p>
 
       {isHovered ? (
-        <PiHexagonFill
-          color="white "
-          className={`w-[80px] h-[80px] bg-hexa-black bg-no-repeat bg-center cursor-pointer transition-all flex justify-center items-center ${
-            isHovered ? "duration-500" : "hidden"
-          }`}
-          onMouseLeave={() => setIsHovered(false)}
-        ></PiHexagonFill>
+        <button
+          onClick={() => {
+            navigate(`/newssubject`);
+          }}
+        >
+          <PiHexagonFill
+            color="white "
+            className={`w-[80px] h-[80px] bg-hexa-black bg-no-repeat bg-center cursor-pointer transition-all flex justify-center items-center ${
+              isHovered ? "duration-500" : "hidden"
+            }`}
+            onMouseLeave={() => setIsHovered(false)}
+          ></PiHexagonFill>
+        </button>
       ) : (
         <PiHexagonThin
           color="white"

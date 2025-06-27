@@ -7,10 +7,12 @@ import Navbar from "../navbar";
 import Search from "../search";
 import Chat from "../chat";
 import Menu from "../menu";
+import { useNavigate } from "react-router";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isOpenChat, setIsOpenChat] = useState(false);
+  const navigate = useNavigate();
   const ref = useRef(null);
   const navigationData = [
     {
@@ -136,7 +138,8 @@ export default function Header() {
         <img
           src={Lambo}
           alt="Lamborghini Icon"
-          className="w-11 h-11 lg:w-[61px] lg:h-[61px] lg:mr-5"
+          className="w-11 h-11 lg:w-[61px] lg:h-[61px] lg:mr-5 hover:cursor-pointer"
+          onClick={() => navigate("/home")}
         />
         <Navbar navigationData={navigationData} />
         <div className="w-[150px] h-fit flex justify-between items-center">
