@@ -1,4 +1,4 @@
-import Hexa from "../assets/hexagon.png";
+import Hexa from "../assets/Hexagon.png";
 import UpWhite from "../assets/UpWhite.png";
 import UpBlack from "../assets/UpBlack.png";
 import React from "react";
