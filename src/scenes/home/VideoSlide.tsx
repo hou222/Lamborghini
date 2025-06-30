@@ -6,6 +6,7 @@ import TextAnimation from "../../shared/TextAnimation";
 export default function VideoSlide() {
   const [select, setSelect] = useState<number>(0);
   const ref = useRef<SlideshowRef | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const videos = [
     {
       video: mp4,
