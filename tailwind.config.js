@@ -6,7 +6,7 @@ export default {
       backgroundImage: {
         "hexa-black": "url('/src/assets/rightBigBlack.png')",
         "hexa-white": "url('/src/assets/rightBigWhite.png')",
-        "lambo-1": "url('/src/assets/Lambo1.jpg')",
+        "lambo-1": "url('/src/assets/Lambo1.webp')",
         "temerario-txt": "url('/src/assets/TEMERARIO-txt.png')",
         "huracan-txt": "url('/src/assets/HURACAN-txt.png')",
         "revuelto-txt": "url('/src/assets/REVUELTO-txt.png')",

@@ -137,6 +137,8 @@ export default function Header() {
       >
         <img
           src={Lambo}
+          width={500}
+          height={514}
           alt="Lamborghini Icon"
           className="w-11 h-11 lg:w-[61px] lg:h-[61px] lg:mr-5 hover:cursor-pointer"
           onClick={() => navigate("/home")}
