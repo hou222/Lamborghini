@@ -6,7 +6,8 @@ import TextAnimation from "../../shared/TextAnimation";
 export default function VideoSlide() {
   const [select, setSelect] = useState<number>(0);
   const ref = useRef<SlideshowRef | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  //const [isLoading, setIsLoading] = useState(false);
+  //const ref = useRef();
   const videos = [
     {
       video: mp4,
@@ -22,6 +23,10 @@ export default function VideoSlide() {
     },
   ];
 
+  /* useEffect(() => {
+    const video = videoRef.current;
+  }, []); */
+
   function handleMoves(val: number) {
     if (select < val) {
       ref.current?.goNext();
@@ -30,12 +35,14 @@ export default function VideoSlide() {
     }
     setSelect(val);
   }
+
   return (
     <div>
       <Fade arrows={false} autoplay={false} ref={ref}>
         {videos.map((video, index) => (
           <div key={index}>
             <video
+              /* ref={ref} */
               autoPlay={true}
               loop={true}
               muted={true}
