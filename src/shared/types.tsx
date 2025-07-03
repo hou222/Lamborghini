@@ -16,6 +16,8 @@ export interface CarType {
   id: number;
   name: string;
   image: string;
+  width: number;
+  height: number;
   background: string;
   title: string;
   text: string;

@@ -12,7 +12,12 @@ export default function NewsSection() {
           <p className="text-[45px] leading-none py-6 font-bold lg:text-[100px] 2xl:text-[110px]">
             LAMBORGHINI WORLD
           </p>
-          <img src={lambo1} alt="lamborghini wallpaper" />
+          <img
+            src={lambo1}
+            width={1587}
+            height={682}
+            alt="lamborghini wallpaper"
+          />
         </div>
       </div>
       <div className="px-4 pt-10 flex flex-col gap-4 lg:px-20 2xl:px-36">
@@ -28,7 +33,13 @@ export default function NewsSection() {
           discharged battery: 17,8 l/100km
         </p>
         <div className="flex flex-col gap-4 py-14 lg:flex-row">
-          <img src={lambo2} alt="lambo" className="lg:w-1/2" />
+          <img
+            src={lambo2}
+            width={792}
+            height={321}
+            alt="lambo"
+            className="lg:w-1/2"
+          />
           <div className=" lg:flex lg:flex-col lg:gap-3 lg:items-start">
             <p className="font-semibold text-lg lg:font-thin">6 March 2025</p>
 

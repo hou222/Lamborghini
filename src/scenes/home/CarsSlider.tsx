@@ -31,6 +31,8 @@ export default function CarsSlider({ cars }: Props) {
           >
             <img
               src={car.image}
+              width={car.width}
+              height={car.height}
               alt={car.name}
               className="w-[300px] sm:w-[400px] md:w-[530px]"
             />

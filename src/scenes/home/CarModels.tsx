@@ -43,7 +43,13 @@ export default function CarModels({ cars }: Props) {
           </div>
         </div>
         <div className="w-3/5 flex items-end ">
-          <img src={car.image} alt="car" className="h-[560px]" />
+          <img
+            src={car.image}
+            width={car.width}
+            height={car.height}
+            alt="car"
+            className="h-[560px]"
+          />
           {/* <img src={huracan} alt="car" /> */}
         </div>
       </div>
