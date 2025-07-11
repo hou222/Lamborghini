@@ -3,7 +3,7 @@ import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(4
 import mp42 from "../../assets/Lamborghini2.mp4";
 import { useRef, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
-import { label } from "motion/react-client";
+
 export default function VideoSlide() {
   const [select, setSelect] = useState<number>(0);
   const ref = useRef<SlideshowRef | null>(null);
