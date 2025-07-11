@@ -3,6 +3,7 @@ import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(4
 import mp42 from "../../assets/Lamborghini2.mp4";
 import { useRef, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
+import { label } from "motion/react-client";
 export default function VideoSlide() {
   const [select, setSelect] = useState<number>(0);
   const ref = useRef<SlideshowRef | null>(null);
@@ -14,12 +15,14 @@ export default function VideoSlide() {
       caption: 0,
       title: "THE RED ZONE WITH CALDARELLI",
       text: "TEMERARIO: BEYOND THE LIMIT",
+      label: "first video",
     },
     {
       video: mp42,
       caption: 1,
       title: "READY TO GO BEYOND ?",
       text: "FAST FORWORLD",
+      label: "second video",
     },
   ];
 
@@ -62,6 +65,7 @@ export default function VideoSlide() {
               <div className=" absolute bottom-0 right-0 left-0 flex justify-center items-center gap-3 py-10 lg:justify-start lg:px-24 xl:px-28">
                 {videos.map((_, index) => (
                   <button
+                    aria-label={video.label}
                     key={index}
                     className={`w-[60px] h-4 relative after:block after:content-[''] after:absolute  after:w-full after:bottom-0 after:transition-all after:duration-200 ${
                       select === index

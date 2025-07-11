@@ -15,7 +15,7 @@ export default function Chat({ isOpenChat, handleOpenChat }: Props) {
     >
       <div className=" py-8 flex w-full justify-between px-10 border-b">
         <p className="text-xl font-semibold">ASK ME</p>
-        <button onClick={handleOpenChat}>
+        <button aria-label="Close chat" onClick={handleOpenChat}>
           <VscClose className="w-6 h-6" />
         </button>
       </div>

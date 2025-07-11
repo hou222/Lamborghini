@@ -160,6 +160,7 @@ export default function Header() {
           </button>
 
           <button
+            aria-label="Open menu"
             className={`w-8 h-7 flex justify-center items-center focus:ring-1 ring-white rounded-sm focus:bg-[#373737] `}
             onClick={handleOpen}
             disabled={isOpenSearch || isOpenChat}
