@@ -40,16 +40,19 @@ export default function TextAnimation({
 
   return (
     <div>
-      <motion.p
+      <motion.div
         key={`10${rerun}`}
         initial={initialProps}
         animate={animateProps}
         transition={{ duration: 2.3, ease: "easeInOut", delay: 0.7 }}
-        className={`text-${color} text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
       >
-        {title}
-      </motion.p>
-      <motion.p
+        <p
+          className={`text-${color} text-xl overflow-hidden whitespace-nowrap lg:text-2xl lg:font-semibold xl:text-3xl `}
+        >
+          {title}
+        </p>
+      </motion.div>
+      <motion.div
         key={`01${rerun}`}
         initial={shouldAnimate ? `hidden` : "visible"}
         whileInView={shouldAnimate ? "visible" : "visble"}
@@ -59,10 +62,9 @@ export default function TextAnimation({
           visible: { opacity: 1, x: 0 },
         }}
         viewport={{ once: true }}
-        className={`${textS[size]} text-${color} `}
       >
-        {text}
-      </motion.p>
+        <p className={`${textS[size]} text-${color} `}>{text}</p>
+      </motion.div>
 
       {isHovered ? (
         <button

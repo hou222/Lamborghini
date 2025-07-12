@@ -1,6 +1,6 @@
 import { Fade, SlideshowRef } from "react-slideshow-image";
-import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(480P).mp4";
-import mp42 from "../../assets/Lamborghini2.mp4";
+import mp4 from "../../assets/Gintani Equipped Lamborghini Aventador SVJ  _ 4K(480P).webm";
+import mp42 from "../../assets/Lamborghini2.webm";
 import { useRef, useState } from "react";
 import TextAnimation from "../../shared/TextAnimation";
 
